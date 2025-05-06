@@ -26,6 +26,7 @@
     <x-purpose />
     <x-vision-mission />
     <x-products />
+    <x-packaging-options />
     <x-certifications />
     <x-contact />
     <x-footer />

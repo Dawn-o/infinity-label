@@ -25,7 +25,7 @@
                         </div>
                         <div>
                             <p class="text-sm text-white/70">Call us at</p>
-                            <p class="font-medium">+1 (234) 567-8900</p>
+                            <p class="font-medium">+62 823-8089-8261</p>
                         </div>
                     </div>
                 </div>
