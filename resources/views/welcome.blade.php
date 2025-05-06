@@ -66,26 +66,6 @@
             overflow: hidden;
         }
         
-        /* Custom cursor */
-        .custom-cursor {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: rgba(14, 131, 136, 0.3);
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: width 0.2s, height 0.2s, background-color 0.2s;
-            display: none;
-        }
-        
-        @media (min-width: 768px) {
-            .custom-cursor {
-                display: block;
-            }
-        }
-        
         /* Loading animation */
         .loader {
             position: fixed;
@@ -127,9 +107,6 @@
             </div>
         </div>
     </div>
-    
-    <!-- Custom Cursor for Desktop -->
-    <div class="custom-cursor" id="custom-cursor"></div>
     
     <!-- Header Component -->
     <x-header />
@@ -173,32 +150,6 @@
             easing: 'ease-out-cubic',
             once: true,
             offset: 100
-        });
-        
-        // Custom cursor
-        document.addEventListener('DOMContentLoaded', function() {
-            const cursor = document.getElementById('custom-cursor');
-            
-            document.addEventListener('mousemove', function(e) {
-                cursor.style.left = e.clientX + 'px';
-                cursor.style.top = e.clientY + 'px';
-            });
-            
-            // Enlarge on clickable elements
-            const clickables = document.querySelectorAll('a, button, input[type="submit"], .clickable');
-            clickables.forEach(element => {
-                element.addEventListener('mouseenter', function() {
-                    cursor.style.width = '40px';
-                    cursor.style.height = '40px';
-                    cursor.style.backgroundColor = 'rgba(14, 131, 136, 0.15)';
-                });
-                
-                element.addEventListener('mouseleave', function() {
-                    cursor.style.width = '20px';
-                    cursor.style.height = '20px';
-                    cursor.style.backgroundColor = 'rgba(14, 131, 136, 0.3)';
-                });
-            });
         });
         
         // Active navigation highlighting
