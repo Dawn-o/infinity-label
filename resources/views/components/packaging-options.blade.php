@@ -56,11 +56,10 @@
                     class="absolute inset-0 rounded-full bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
             </button>
 
-            <!-- Packaging container - can show either slider or table -->
-            <div class="rounded-xl bg-white/50 backdrop-blur-sm shadow-lg border border-accent/10 overflow-hidden"
-                id="pkg-view-container">
+            <!-- Packaging container - removed background -->
+            <div class="rounded-xl overflow-hidden" id="pkg-view-container">
                 <!-- Slider view -->
-                <div id="slider-view" class="overflow-hidden">
+                <div id="slider-view" class="overflow-hidden" id="pkg-slider-container">
                     <div class="flex transition-all duration-700 ease-out" id="pkg-slider">
                         @php
                             $packagingData = config('packaging-data');
@@ -105,24 +104,24 @@
                                 data-aos="fade-up" data-aos-delay="{{ $index * 50 }}">
                                 <div
                                     class="bg-white/95 backdrop-filter backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl border border-accent/10 overflow-hidden h-full transition-all duration-300 hover:-translate-y-1 group">
-                                    <!-- Card header -->
+                                    <!-- Card header with fixed height -->
                                     <div
-                                        class="bg-gradient-to-r from-primary/10 via-transparent to-secondary/10 p-5 border-b border-accent/10 relative">
+                                        class="bg-gradient-to-r from-primary/10 via-transparent to-secondary/10 p-5 border-b border-accent/10 relative h-24 flex items-center">
                                         <!-- Background pattern for the header -->
                                         <div class="absolute inset-0 opacity-10 bg-pattern-grid"></div>
 
-                                        <h3 class="font-bold text-primary text-lg flex items-center gap-3">
+                                        <h3 class="font-bold text-primary text-lg flex items-center gap-3 w-full">
                                             <div
                                                 class="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r from-primary to-secondary text-white text-lg shadow-md group-hover:scale-110 transition-transform duration-300">
                                                 {{ $index + 1 }}
                                             </div>
                                             <span
-                                                class="group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-secondary transition-all duration-300">{{ $item['product'] }}</span>
+                                                class="group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-secondary transition-all duration-300 line-clamp-2">{{ $item['product'] }}</span>
                                         </h3>
                                     </div>
 
-                                    <!-- Card body with packaging options -->
-                                    <div class="p-5 max-h-[440px] overflow-y-auto hide-scrollbar">
+                                    <!-- Card body with packaging options - removed scrolling -->
+                                    <div class="p-5">
                                         <div class="flex flex-col gap-3">
                                             @foreach (['pet', 'tetra_pak', 'sleek_can', 'aluminum_can', 'tin_can', 'carnation_can', 'bulk'] as $pkgKey)
                                                 <div class="transition-all duration-300 w-full">
@@ -274,7 +273,7 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                const sliderContainer = document.getElementById('pkg-slider-container');
+                const sliderContainer = document.getElementById('pkg-slider-container') || document.getElementById('slider-view');
                 const slider = document.getElementById('pkg-slider');
                 const prevButton = document.getElementById('pkg-arrow-prev');
                 const nextButton = document.getElementById('pkg-arrow-next');
@@ -345,15 +344,19 @@
                     return window.innerWidth < 768 ? 1 : 2;
                 }
 
-                // Update slider position
+                // Update slider position - Fixed function
                 function updateSliderPosition() {
                     if (window.innerWidth < 768) {
                         // For mobile: use container width for smooth scrolling
-                        const containerWidth = sliderContainer.offsetWidth;
-                        slider.style.transform = `translateX(-${currentPage * containerWidth}px)`;
+                        const containerWidth = sliderContainer ? sliderContainer.offsetWidth : window.innerWidth - 40;
+                        if (slider) {
+                            slider.style.transform = `translateX(-${currentPage * containerWidth}px)`;
+                        }
                     } else {
                         // For desktop: use fixed slide width
-                        slider.style.transform = `translateX(${currentPosition}px)`;
+                        if (slider) {
+                            slider.style.transform = `translateX(${currentPosition}px)`;
+                        }
                     }
                 }
 
@@ -472,8 +475,16 @@
                             control.classList.remove('hidden');
                         });
 
-                        // Reset slider position
-                        updateSliderPosition();
+                        // Reset slider position - Add reference to the function
+                        const mainSlider = document.getElementById('pkg-slider');
+                        const containerWidth = window.innerWidth < 768 ? (window.innerWidth - 40) : 384;
+                        if (mainSlider) {
+                            if (window.innerWidth < 768) {
+                                mainSlider.style.transform = `translateX(0px)`;
+                            } else {
+                                mainSlider.style.transform = `translateX(0px)`;
+                            }
+                        }
                     }
                 });
             });
