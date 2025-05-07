@@ -21,7 +21,10 @@
         </a>
         
         <!-- Enhanced Mobile Menu Button with animation -->
-        <button type="button" class="relative p-2 text-primary rounded-lg hover:bg-accent/20 transition-all focus:outline-none focus:ring-2 focus:ring-secondary/20 group" id="mobile-menu-button" aria-label="Open menu">
+        <button 
+            id="mobile-menu-button" 
+            @click="toggleMenu($event)" 
+            class="group flex flex-col items-center justify-center w-10 h-10 relative z-50 focus:outline-none">
             <div class="relative w-6 h-5">
                 <span class="absolute top-0 left-0 w-full h-0.5 bg-secondary rounded-full transition-all duration-300 group-hover:bg-primary" id="menu-bar-1"></span>
                 <span class="absolute top-1/2 left-0 -translate-y-1/2 w-full h-0.5 bg-secondary rounded-full transition-all duration-300 group-hover:bg-primary" id="menu-bar-2"></span>

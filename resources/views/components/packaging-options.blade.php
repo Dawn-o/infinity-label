@@ -1,5 +1,6 @@
 <section id="packaging"
-    class="py-20 sm:py-24 lg:py-32 bg-gradient-to-b from-accent/10 to-accent/5 relative overflow-hidden">
+    class="py-20 sm:py-24 lg:py-32 bg-gradient-to-b from-accent/10 to-accent/5 relative overflow-hidden"
+    x-data="packagingOptions">
     <!-- Enhanced top diagonal divider -->
     <div class="absolute top-0 left-0 w-full h-24 bg-white" style="clip-path: polygon(0 0, 100% 0, 100% 100%, 0 30%);">
     </div>
@@ -27,15 +28,15 @@
             <p class="mt-4 max-w-3xl mx-auto text-dark/80 text-lg">Choose from our versatile range of packaging
                 solutions to match your brand requirements and market preferences.</p>
 
-            <!-- Table view toggle button - CHANGED TO TOGGLE FUNCTIONALITY -->
-            <button id="view-toggle-btn"
+            <!-- Alpine.js toggle button -->
+            <button @click="toggleView()"
                 class="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-white border border-primary/20 hover:bg-primary/5 text-primary rounded-lg shadow-sm transition-all duration-300 text-sm font-medium">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M4 6h16M4 10h16M4 14h16M4 18h16" />
                 </svg>
-                <span id="view-toggle-text">View as Table</span>
+                <span x-text="isTableView ? 'View as Cards' : 'View as Table'"></span>
             </button>
         </div>
 
@@ -43,8 +44,10 @@
         <div class="relative px-4 py-8 mx-auto max-w-[calc(100%-2rem)]" data-aos="fade-up">
             <!-- Navigation arrows - visible only in slider mode -->
             <button
-                class="absolute -left-3 lg:-left-8 top-1/2 transform -translate-y-1/2 z-10 bg-gradient-to-r from-white to-white/95 hover:from-white hover:to-white shadow-lg hover:shadow-xl rounded-full w-12 h-12 lg:w-14 lg:h-14 flex items-center justify-center text-primary transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/30 border border-accent/10 backdrop-blur-sm group slider-control"
-                id="pkg-arrow-prev">
+                @click="prevPage()"
+                x-show="!isTableView"
+                :class="{'opacity-50 cursor-not-allowed': currentPage === 0}"
+                class="absolute -left-3 lg:-left-8 top-1/2 transform -translate-y-1/2 z-10 bg-gradient-to-r from-white to-white/95 hover:from-white hover:to-white shadow-lg hover:shadow-xl rounded-full w-12 h-12 lg:w-14 lg:h-14 flex items-center justify-center text-primary transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/30 border border-accent/10 backdrop-blur-sm group">
                 <svg xmlns="http://www.w3.org/2000/svg"
                     class="h-5 w-5 lg:h-6 lg:w-6 text-primary/80 group-hover:text-primary transition-all duration-300 transform group-hover:-translate-x-0.5"
                     viewBox="0 0 24 24" fill="none">
@@ -59,8 +62,11 @@
             <!-- Packaging container - removed background -->
             <div class="rounded-xl overflow-hidden" id="pkg-view-container">
                 <!-- Slider view -->
-                <div id="slider-view" class="overflow-hidden" id="pkg-slider-container">
-                    <div class="flex transition-all duration-700 ease-out" id="pkg-slider">
+                <div id="slider-view" x-show="!isTableView" class="overflow-hidden">
+                    <div class="flex transition-all duration-700 ease-out" id="pkg-slider"
+                         :style="{ transform: `translateX(${sliderPosition}px)` }"
+                         @touchstart="handleTouchStart($event)"
+                         @touchend="handleTouchEnd($event)">
                         @php
                             $packagingData = config('packaging-data');
 
@@ -189,8 +195,8 @@
                     </div>
                 </div>
 
-                <!-- Table view - hidden by default -->
-                <div id="table-view" class="hidden p-4 overflow-x-auto">
+                <!-- Table view -->
+                <div id="table-view" x-show="isTableView" class="p-4 overflow-x-auto">
                     <table class="w-full border-collapse border border-accent/10 shadow-sm rounded-lg overflow-hidden">
                         <thead>
                             <tr class="bg-gradient-to-r from-primary/10 via-accent/5 to-secondary/10">
@@ -254,8 +260,10 @@
 
             <!-- Right arrow - visible only in slider mode -->
             <button
-                class="absolute -right-3 lg:-right-8 top-1/2 transform -translate-y-1/2 z-10 bg-gradient-to-l from-white to-white/95 hover:from-white hover:to-white shadow-lg hover:shadow-xl rounded-full w-12 h-12 lg:w-14 lg:h-14 flex items-center justify-center text-primary transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/30 border border-accent/10 backdrop-blur-sm group slider-control"
-                id="pkg-arrow-next">
+                @click="nextPage()"
+                x-show="!isTableView"
+                :class="{'opacity-50 cursor-not-allowed': currentPage >= totalPages - 1}"
+                class="absolute -right-3 lg:-right-8 top-1/2 transform -translate-y-1/2 z-10 bg-gradient-to-l from-white to-white/95 hover:from-white hover:to-white shadow-lg hover:shadow-xl rounded-full w-12 h-12 lg:w-14 lg:h-14 flex items-center justify-center text-primary transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/30 border border-accent/10 backdrop-blur-sm group">
                 <svg xmlns="http://www.w3.org/2000/svg"
                     class="h-5 w-5 lg:h-6 lg:w-6 text-primary/80 group-hover:text-primary transition-all duration-300 transform group-hover:translate-x-0.5"
                     viewBox="0 0 24 24" fill="none">
@@ -267,226 +275,122 @@
                     class="absolute inset-0 rounded-full bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
             </button>
 
-            <!-- Enhanced slider pagination dots with active states -->
-            <div class="flex justify-center mt-8 space-x-3 slider-control" id="pkg-pagination"></div>
+            <!-- Enhanced slider pagination dots with Alpine.js -->
+            <div class="flex justify-center mt-8 space-x-3" x-show="!isTableView">
+                <template x-for="(page, index) in totalPages" :key="index">
+                    <button
+                        @click="goToPage(index)"
+                        :class="{'bg-primary transform scale-110 shadow-md': currentPage === index, 'bg-gray-300 hover:bg-gray-400': currentPage !== index}"
+                        class="w-3 h-3 rounded-full transition-all duration-300 focus:outline-none"
+                        :aria-label="`Page ${index + 1}`">
+                    </button>
+                </template>
+            </div>
         </div>
 
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const sliderContainer = document.getElementById('pkg-slider-container') || document.getElementById('slider-view');
-                const slider = document.getElementById('pkg-slider');
-                const prevButton = document.getElementById('pkg-arrow-prev');
-                const nextButton = document.getElementById('pkg-arrow-next');
-                const paginationDots = document.getElementById('pkg-pagination').querySelectorAll('button');
-                const packagingItems = document.querySelectorAll('.pkg-card');
-
-                // Variables for slider functionality
-                const slideWidth = 384; // width of each slide + margin (md:w-96)
-                let currentPosition = 0;
-                let currentPage = 0;
-                let totalPages = 3; // Will be recalculated based on visible items
-                let itemsPerPage = 2;
-
-                // Function to update pagination dots
-                function updatePaginationDots() {
-                    const paginationContainer = document.getElementById('pkg-pagination');
-                    paginationContainer.innerHTML = ''; // Clear existing dots
-
-                    for (let i = 0; i < totalPages; i++) {
-                        const dot = document.createElement('button');
-                        dot.classList.add('w-3', 'h-3', 'rounded-full', 'transition-all', 'duration-300',
-                            'focus:outline-none');
-                        dot.setAttribute('data-index', i);
-                        dot.setAttribute('aria-label', `Page ${i + 1}`);
-
-                        if (i === currentPage) {
-                            dot.classList.add('bg-primary', 'transform', 'scale-110', 'shadow-md');
-                        } else {
-                            dot.classList.add('bg-gray-300', 'hover:bg-gray-400');
-                        }
-
-                        dot.addEventListener('click', () => {
-                            currentPage = i;
-                            currentPosition = -slideWidth * currentPage * itemsPerPage;
-                            updateSliderPosition();
-                            updateActiveDot();
-                            updateButtonStates();
+            document.addEventListener('alpine:init', () => {
+                Alpine.data('packagingOptions', () => ({
+                    // State variables
+                    isTableView: false,
+                    currentPage: 0,
+                    sliderPosition: 0,
+                    touchStartX: 0,
+                    touchEndX: 0,
+                    itemsPerPage: 2,
+                    totalItems: {{ count($packagingData ?? []) }},
+                    
+                    // Computed property for total pages
+                    get totalPages() {
+                        return Math.ceil(this.totalItems / this.itemsPerPage);
+                    },
+                    
+                    // Initialization
+                    init() {
+                        this.updateItemsPerPage();
+                        
+                        // Add resize handler
+                        window.addEventListener('resize', () => {
+                            this.updateItemsPerPage();
+                            this.updateSliderPosition();
                         });
-
-                        paginationContainer.appendChild(dot);
-                    }
-                }
-
-                // Previous button click
-                prevButton.addEventListener('click', () => {
-                    if (currentPage > 0) {
-                        currentPage--;
-                        currentPosition = -slideWidth * currentPage * itemsPerPage;
-                        updateSliderPosition();
-                        updateActiveDot();
-                        updateButtonStates();
-                    }
-                });
-
-                // Next button click
-                nextButton.addEventListener('click', () => {
-                    if (currentPage < totalPages - 1) {
-                        currentPage++;
-                        currentPosition = -slideWidth * currentPage * itemsPerPage;
-                        updateSliderPosition();
-                        updateActiveDot();
-                        updateButtonStates();
-                    }
-                });
-
-                // Enhanced function to determine items per page based on screen width
-                function getItemsPerPage() {
-                    return window.innerWidth < 768 ? 1 : 2;
-                }
-
-                // Update slider position - Fixed function
-                function updateSliderPosition() {
-                    if (window.innerWidth < 768) {
-                        // For mobile: use container width for smooth scrolling
-                        const containerWidth = sliderContainer ? sliderContainer.offsetWidth : window.innerWidth - 40;
-                        if (slider) {
-                            slider.style.transform = `translateX(-${currentPage * containerWidth}px)`;
+                    },
+                    
+                    // Toggle between card and table views
+                    toggleView() {
+                        this.isTableView = !this.isTableView;
+                        if (!this.isTableView) {
+                            // Reset to first page when switching back to slider
+                            this.currentPage = 0;
+                            this.updateSliderPosition();
                         }
-                    } else {
-                        // For desktop: use fixed slide width
-                        if (slider) {
-                            slider.style.transform = `translateX(${currentPosition}px)`;
+                    },
+                    
+                    // Navigation methods
+                    prevPage() {
+                        if (this.currentPage > 0) {
+                            this.currentPage--;
+                            this.updateSliderPosition();
                         }
-                    }
-                }
-
-                // Update active dot indicator
-                function updateActiveDot() {
-                    const dots = document.getElementById('pkg-pagination').querySelectorAll('button');
-                    dots.forEach((dot, index) => {
-                        if (index === currentPage) {
-                            dot.classList.remove('bg-gray-300');
-                            dot.classList.add('bg-primary', 'transform', 'scale-110');
-                        } else {
-                            dot.classList.remove('bg-primary', 'transform', 'scale-110');
-                            dot.classList.add('bg-gray-300');
+                    },
+                    
+                    nextPage() {
+                        if (this.currentPage < this.totalPages - 1) {
+                            this.currentPage++;
+                            this.updateSliderPosition();
                         }
-                    });
-                }
-
-                // Update button states (disabled when at the ends)
-                function updateButtonStates() {
-                    // Reset states
-                    prevButton.classList.remove('opacity-50', 'cursor-not-allowed');
-                    nextButton.classList.remove('opacity-50', 'cursor-not-allowed');
-
-                    // Apply disabled states
-                    if (currentPage === 0) {
-                        prevButton.classList.add('opacity-50', 'cursor-not-allowed');
-                    }
-
-                    if (currentPage === totalPages - 1 || totalPages === 0) {
-                        nextButton.classList.add('opacity-50', 'cursor-not-allowed');
-                    }
-                }
-
-                // Enhanced window resize handler
-                window.addEventListener('resize', function() {
-                    // Update items per page
-                    itemsPerPage = getItemsPerPage();
-
-                    // Recalculate visible pages
-                    totalPages = Math.ceil(packagingItems.length / itemsPerPage);
-
-                    // Make sure current page is still valid
-                    if (currentPage >= totalPages) {
-                        currentPage = totalPages - 1;
-                    }
-
+                    },
+                    
+                    goToPage(pageIndex) {
+                        this.currentPage = pageIndex;
+                        this.updateSliderPosition();
+                    },
+                    
+                    // Update items per page based on screen size
+                    updateItemsPerPage() {
+                        this.itemsPerPage = window.innerWidth < 768 ? 1 : 2;
+                        
+                        // Make sure current page is still valid
+                        if (this.currentPage >= this.totalPages) {
+                            this.currentPage = Math.max(0, this.totalPages - 1);
+                        }
+                    },
+                    
                     // Update slider position
-                    updateSliderPosition();
-                    updatePaginationDots();
-                    updateActiveDot();
-                    updateButtonStates();
-                });
-
-                // Initialize
-                itemsPerPage = getItemsPerPage();
-                totalPages = Math.ceil(packagingItems.length / itemsPerPage);
-                updatePaginationDots();
-                updateButtonStates();
-
-                // Touch swipe support
-                let touchStartX = 0;
-                let touchEndX = 0;
-
-                slider.addEventListener('touchstart', e => {
-                    touchStartX = e.changedTouches[0].screenX;
-                });
-
-                slider.addEventListener('touchend', e => {
-                    touchEndX = e.changedTouches[0].screenX;
-                    handleSwipe();
-                });
-
-                function handleSwipe() {
-                    const swipeThreshold = 50;
-                    if (touchStartX - touchEndX > swipeThreshold) {
-                        // Swipe left - next
-                        nextButton.click();
-                    } else if (touchEndX - touchStartX > swipeThreshold) {
-                        // Swipe right - previous
-                        prevButton.click();
-                    }
-                }
-            });
-
-            // View toggle functionality
-            document.addEventListener('DOMContentLoaded', function() {
-                const viewToggleBtn = document.getElementById('view-toggle-btn');
-                const viewToggleText = document.getElementById('view-toggle-text');
-                const sliderView = document.getElementById('slider-view');
-                const tableView = document.getElementById('table-view');
-                const sliderControls = document.querySelectorAll('.slider-control');
-                let isTableView = false;
-
-                // Toggle between slider and table views
-                viewToggleBtn.addEventListener('click', function() {
-                    isTableView = !isTableView;
-
-                    if (isTableView) {
-                        // Show table view
-                        sliderView.classList.add('hidden');
-                        tableView.classList.remove('hidden');
-                        viewToggleText.textContent = 'View as Cards';
-
-                        // Hide slider controls
-                        sliderControls.forEach(control => {
-                            control.classList.add('hidden');
-                        });
-                    } else {
-                        // Show slider view
-                        tableView.classList.add('hidden');
-                        sliderView.classList.remove('hidden');
-                        viewToggleText.textContent = 'View as Table';
-
-                        // Show slider controls
-                        sliderControls.forEach(control => {
-                            control.classList.remove('hidden');
-                        });
-
-                        // Reset slider position - Add reference to the function
-                        const mainSlider = document.getElementById('pkg-slider');
-                        const containerWidth = window.innerWidth < 768 ? (window.innerWidth - 40) : 384;
-                        if (mainSlider) {
-                            if (window.innerWidth < 768) {
-                                mainSlider.style.transform = `translateX(0px)`;
-                            } else {
-                                mainSlider.style.transform = `translateX(0px)`;
-                            }
+                    updateSliderPosition() {
+                        const slideWidth = 384; // width of each slide + margin (w-96)
+                        
+                        if (window.innerWidth < 768) {
+                            // For mobile: use container width
+                            const containerWidth = document.getElementById('slider-view').offsetWidth;
+                            this.sliderPosition = -this.currentPage * containerWidth;
+                        } else {
+                            // For desktop: use fixed slide width
+                            this.sliderPosition = -slideWidth * this.currentPage * this.itemsPerPage;
+                        }
+                    },
+                    
+                    // Touch handlers for swipe support
+                    handleTouchStart(e) {
+                        this.touchStartX = e.changedTouches[0].screenX;
+                    },
+                    
+                    handleTouchEnd(e) {
+                        this.touchEndX = e.changedTouches[0].screenX;
+                        this.handleSwipe();
+                    },
+                    
+                    handleSwipe() {
+                        const swipeThreshold = 50;
+                        if (this.touchStartX - this.touchEndX > swipeThreshold) {
+                            // Swipe left - next
+                            this.nextPage();
+                        } else if (this.touchEndX - this.touchStartX > swipeThreshold) {
+                            // Swipe right - previous
+                            this.prevPage();
                         }
                     }
-                });
+                }));
             });
         </script>
     </div>
