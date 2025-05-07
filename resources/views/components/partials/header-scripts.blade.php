@@ -14,36 +14,91 @@
         });
 
         const menuButton = document.getElementById('mobile-menu-button');
-        const menu = document.getElementById('mobile-menu');
-        const bar1 = document.getElementById('menu-bar-1');
-        const bar2 = document.getElementById('menu-bar-2');
-        const bar3 = document.getElementById('menu-bar-3');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuBar1 = document.getElementById('menu-bar-1');
+        const menuBar2 = document.getElementById('menu-bar-2');
+        const menuBar3 = document.getElementById('menu-bar-3');
+        let isMenuOpen = false;
 
-        menuButton.addEventListener('click', function() {
-            if (menu.classList.contains('hidden')) {
-                // Open menu
-                menu.classList.remove('hidden');
-                setTimeout(() => {
-                    menu.style.maxHeight = menu.scrollHeight + 'px';
+        // Function to close the menu
+        function closeMenu() {
+            if (!isMenuOpen) return;
 
-                    // Animate to X
-                    bar1.classList.add('rotate-45', 'translate-y-2');
-                    bar2.classList.add('opacity-0');
-                    bar3.classList.add('-rotate-45', '-translate-y-2');
-                }, 10);
-            } else {
-                // Close menu
-                menu.style.maxHeight = '0px';
+            // Animate the hamburger icon back
+            menuBar1.style.transform = '';
+            menuBar1.style.top = '0';
+            menuBar2.style.opacity = '1';
+            menuBar3.style.transform = '';
+            menuBar3.style.bottom = '0';
 
-                // Animate back to hamburger
-                bar1.classList.remove('rotate-45', 'translate-y-2');
-                bar2.classList.remove('opacity-0');
-                bar3.classList.remove('-rotate-45', '-translate-y-2');
+            // Hide the menu with animation
+            mobileMenu.style.maxHeight = '0px';
+            mobileMenu.classList.add('hidden');
 
-                setTimeout(() => {
-                    menu.classList.add('hidden');
-                }, 300);
+            // Remove scroll and click event listeners
+            window.removeEventListener('scroll', onScroll);
+            document.removeEventListener('click', onOutsideClick);
+            document.removeEventListener('touchstart', onOutsideClick);
+
+            isMenuOpen = false;
+        }
+
+        // Function to open the menu
+        function openMenu() {
+            // Animate hamburger to X
+            menuBar1.style.transform = 'rotate(45deg)';
+            menuBar1.style.top = '50%';
+            menuBar1.style.marginTop = '-1px';
+            menuBar2.style.opacity = '0';
+            menuBar3.style.transform = 'rotate(-45deg)';
+            menuBar3.style.bottom = '50%';
+            menuBar3.style.marginBottom = '-1px';
+
+            // Show the menu with animation
+            mobileMenu.classList.remove('hidden');
+            mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
+
+            // Add scroll and outside click listeners
+            window.addEventListener('scroll', onScroll, {
+                passive: true
+            });
+            setTimeout(() => {
+                document.addEventListener('click', onOutsideClick);
+                document.addEventListener('touchstart', onOutsideClick);
+            }, 100);
+
+            isMenuOpen = true;
+        }
+
+        // Function to handle outside clicks
+        function onOutsideClick(event) {
+            if (isMenuOpen && !mobileMenu.contains(event.target) && event.target !== menuButton && !menuButton
+                .contains(event.target)) {
+                closeMenu();
             }
+        }
+
+        // Function to close menu on scroll
+        function onScroll() {
+            if (isMenuOpen) {
+                closeMenu();
+            }
+        }
+
+        // Toggle menu state on button click
+        menuButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (isMenuOpen) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+
+        // Close menu when clicking menu links
+        const menuLinks = mobileMenu.querySelectorAll('a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
         });
     });
 </script>

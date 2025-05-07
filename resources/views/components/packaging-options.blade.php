@@ -1,14 +1,20 @@
-<section id="packaging" class="py-20 sm:py-24 lg:py-32 bg-white relative overflow-hidden">
-    <!-- Decorative background elements -->
-    <div class="absolute inset-0 bg-gradient-to-br from-white via-accent/5 to-white/90 -z-10"></div>
-    <div class="absolute inset-0 opacity-[0.02] bg-pattern-dots -z-10"></div>
+<section id="packaging"
+    class="py-20 sm:py-24 lg:py-32 bg-gradient-to-b from-accent/10 to-accent/5 relative overflow-hidden">
+    <!-- Enhanced top diagonal divider -->
+    <div class="absolute top-0 left-0 w-full h-24 bg-white" style="clip-path: polygon(0 0, 100% 0, 100% 100%, 0 30%);">
+    </div>
 
-    <!-- Floating elements for visual interest -->
-    <div class="absolute top-20 right-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10 animate-pulse-slow"></div>
-    <div class="absolute bottom-20 left-10 w-72 h-72 bg-secondary/5 rounded-full blur-3xl -z-10"></div>
+    <!-- Decorative elements -->
+    <div class="absolute top-40 left-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl -z-10"></div>
+    <div class="absolute bottom-20 right-0 w-80 h-80 bg-secondary/5 rounded-full blur-3xl -z-10"></div>
+    <div class="absolute top-1/4 right-1/4 w-6 h-6 bg-accent/20 rounded-full"></div>
+    <div class="absolute bottom-1/3 left-1/5 w-4 h-4 bg-primary/20 rounded-full"></div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
-        <!-- Section header -->
+    <!-- Subtle pattern overlay -->
+    <div class="absolute inset-0 bg-pattern opacity-[0.03] -z-10"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <!-- Enhanced section header with table view toggle button -->
         <div class="text-center mb-16 md:mb-20" data-aos="fade-up">
             <div class="inline-flex items-center mb-3 py-1.5 px-4 bg-accent/20 rounded-full">
                 <div class="w-2 h-2 bg-accent rounded-full mr-2 animate-pulse"></div>
@@ -20,273 +26,554 @@
             <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto mb-5"></div>
             <p class="mt-4 max-w-3xl mx-auto text-dark/80 text-lg">Choose from our versatile range of packaging
                 solutions to match your brand requirements and market preferences.</p>
+
+            <!-- Table view toggle button - CHANGED TO TOGGLE FUNCTIONALITY -->
+            <button id="view-toggle-btn"
+                class="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-white border border-primary/20 hover:bg-primary/5 text-primary rounded-lg shadow-sm transition-all duration-300 text-sm font-medium">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                </svg>
+                <span id="view-toggle-text">View as Table</span>
+            </button>
         </div>
-            
-        <!-- EXCITING CARD-BASED PACKAGING SHOWCASE -->
-        <div class="relative" data-aos="fade-up" data-aos-delay="100">
-            <!-- Enhanced animated background elements -->
-            <div class="absolute inset-x-0 -top-10 h-64 bg-gradient-to-r from-primary/5 via-transparent to-secondary/5 blur-3xl -z-10 animate-pulse-slow"></div>
-            <div class="absolute inset-x-0 -bottom-20 h-48 bg-gradient-to-r from-secondary/5 via-accent/5 to-primary/5 blur-3xl -z-10 animate-float-slow"></div>
-            
-            <!-- Horizontal scrollable packaging cards with navigation arrows -->
-            <div class="relative mt-8" id="packaging-container">
-                <!-- Left navigation arrow -->
-                <button id="scroll-left" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-primary rounded-full shadow-lg border border-accent/10 w-12 h-12 flex items-center justify-center backdrop-blur-sm transition-all duration-300 -translate-x-6 focus:outline-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                    </svg>
-                </button>
-                
-                <!-- Horizontal scrollable container -->
-                <div class="overflow-x-auto hide-scrollbar py-4 px-12" id="packaging-scroll-container">
-                    <div class="flex gap-6 min-w-max" id="packaging-grid">
+
+        <!-- Container with both slider and table views -->
+        <div class="relative px-4 py-8 mx-auto max-w-[calc(100%-2rem)]" data-aos="fade-up">
+            <!-- Navigation arrows - visible only in slider mode -->
+            <button
+                class="absolute -left-3 lg:-left-8 top-1/2 transform -translate-y-1/2 z-10 bg-gradient-to-r from-white to-white/95 hover:from-white hover:to-white shadow-lg hover:shadow-xl rounded-full w-12 h-12 lg:w-14 lg:h-14 flex items-center justify-center text-primary transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/30 border border-accent/10 backdrop-blur-sm group slider-control"
+                id="pkg-arrow-prev">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 lg:h-6 lg:w-6 text-primary/80 group-hover:text-primary transition-all duration-300 transform group-hover:-translate-x-0.5"
+                    viewBox="0 0 24 24" fill="none">
+                    <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                <span class="sr-only">Previous Options</span>
+                <span
+                    class="absolute inset-0 rounded-full bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+            </button>
+
+            <!-- Packaging container - can show either slider or table -->
+            <div class="rounded-xl bg-white/50 backdrop-blur-sm shadow-lg border border-accent/10 overflow-hidden"
+                id="pkg-view-container">
+                <!-- Slider view -->
+                <div id="slider-view" class="overflow-hidden">
+                    <div class="flex transition-all duration-700 ease-out" id="pkg-slider">
                         @php
                             $packagingData = config('packaging-data');
+
                             $packageIcons = [
-                                'pet' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>',
-                                'tetra_pak' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>',
-                                'sleek_can' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>',
-                                'aluminum_can' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"></path></svg>',
-                                'tin_can' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>',
-                                'carnation_can' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>',
-                                'bulk' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>',
+                                'pet' =>
+                                    '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>',
+                                'tetra_pak' =>
+                                    '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>',
+                                'sleek_can' =>
+                                    '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>',
+                                'aluminum_can' =>
+                                    '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"></path></svg>',
+                                'tin_can' =>
+                                    '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>',
+                                'carnation_can' =>
+                                    '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>',
+                                'bulk' =>
+                                    '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>',
                             ];
-                            $packageTypes = [
-                                'pet' => 'bottle',
-                                'tetra_pak' => 'bottle',
-                                'sleek_can' => 'can',
-                                'aluminum_can' => 'can',
-                                'tin_can' => 'can',
-                                'carnation_can' => 'can',
-                                'bulk' => 'bulk',
-                            ];
-                            
-                            // Enhanced styling options for package types
+
                             $packageStyles = [
-                                'pet' => 'bg-primary/10 text-primary border-primary/20 hover:bg-primary hover:text-white',
-                                'tetra_pak' => 'bg-primary/10 text-primary border-primary/20 hover:bg-primary hover:text-white',
-                                'sleek_can' => 'bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary hover:text-white',
-                                'aluminum_can' => 'bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary hover:text-white',
-                                'tin_can' => 'bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary hover:text-white',
-                                'carnation_can' => 'bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary hover:text-white',
-                                'bulk' => 'bg-accent/10 text-accent border-accent/20 hover:bg-accent hover:text-white',
+                                'pet' =>
+                                    'bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary hover:text-white',
+                                'tetra_pak' =>
+                                    'bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary hover:text-white',
+                                'sleek_can' =>
+                                    'bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary hover:text-white',
+                                'aluminum_can' =>
+                                    'bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary hover:text-white',
+                                'tin_can' =>
+                                    'bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary hover:text-white',
+                                'carnation_can' =>
+                                    'bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary hover:text-white',
+                                'bulk' =>
+                                    'bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary hover:text-white',
                             ];
                         @endphp
-                        
-                        @foreach($packagingData as $index => $item)
-                        <div class="packaging-card flex-shrink-0 w-96 bg-white/95 backdrop-filter backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl border border-accent/10 overflow-hidden transform transition-all duration-300 hover:-translate-y-1.5 group" data-aos="fade-up" data-aos-delay="{{ $index * 50 }}">
-                            <!-- Enhanced card header -->
-                            <div class="bg-gradient-to-r from-primary/10 via-transparent to-secondary/10 p-5 border-b border-accent/10 relative">
-                                <!-- Background pattern for the header -->
-                                <div class="absolute inset-0 opacity-10 bg-pattern-grid"></div>
-                                
-                                <h3 class="font-bold text-primary text-lg flex items-center gap-3">
-                                    <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r from-primary to-secondary text-white text-lg shadow-md group-hover:scale-110 transition-transform duration-300">
-                                        {{ $index + 1 }}
+
+                        @foreach ($packagingData as $index => $item)
+                            <div class="pkg-card flex-shrink-0 md:space-x-6 w-full md:w-96 transform transition-all duration-500"
+                                data-aos="fade-up" data-aos-delay="{{ $index * 50 }}">
+                                <div
+                                    class="bg-white/95 backdrop-filter backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl border border-accent/10 overflow-hidden h-full transition-all duration-300 hover:-translate-y-1 group">
+                                    <!-- Card header -->
+                                    <div
+                                        class="bg-gradient-to-r from-primary/10 via-transparent to-secondary/10 p-5 border-b border-accent/10 relative">
+                                        <!-- Background pattern for the header -->
+                                        <div class="absolute inset-0 opacity-10 bg-pattern-grid"></div>
+
+                                        <h3 class="font-bold text-primary text-lg flex items-center gap-3">
+                                            <div
+                                                class="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r from-primary to-secondary text-white text-lg shadow-md group-hover:scale-110 transition-transform duration-300">
+                                                {{ $index + 1 }}
+                                            </div>
+                                            <span
+                                                class="group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-secondary transition-all duration-300">{{ $item['product'] }}</span>
+                                        </h3>
                                     </div>
-                                    <span class="group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-secondary transition-all duration-300">{{ $item['product'] }}</span>
-                                </h3>
-                            </div>
-                            
-                            <!-- Card body with packaging options in a vertical layout -->
-                            <div class="p-5 h-[440px] overflow-y-auto hide-scrollbar">
-                                <div class="flex flex-col gap-3">
-                                    @foreach(['pet', 'tetra_pak', 'sleek_can', 'aluminum_can', 'tin_can', 'carnation_can', 'bulk'] as $pkgKey)
-                                        <div class="packaging-option transition-all duration-300 w-full" data-type="{{ $packageTypes[$pkgKey] }}">
-                                            @if($item[$pkgKey] != '-')
-                                                <!-- Available packaging option -->
-                                                <div class="relative bg-white hover:bg-gradient-to-br hover:from-white hover:to-primary/5 p-3 rounded-xl border {{ explode(' ', $packageStyles[$pkgKey])[2] }} transition-all duration-300 hover:shadow-md group flex items-center gap-3">
-                                                    <!-- Icon container with enhanced styling -->
-                                                    <div class="flex-shrink-0 {{ explode(' ', $packageStyles[$pkgKey])[0] }} {{ explode(' ', $packageStyles[$pkgKey])[1] }} rounded-full p-2.5 border {{ explode(' ', $packageStyles[$pkgKey])[2] }} transition-all duration-300 {{ explode(' ', $packageStyles[$pkgKey])[3] }} {{ explode(' ', $packageStyles[$pkgKey])[4] }}">
-                                                        {!! $packageIcons[$pkgKey] !!}
-                                                    </div>
-                                                    
-                                                    <div class="flex-grow">
-                                                        <div class="text-xs font-semibold uppercase tracking-wider {{ explode(' ', $packageStyles[$pkgKey])[1] }}/70">{{ str_replace('_', ' ', $pkgKey) }}</div>
-                                                        <div class="font-medium text-dark/90 group-hover:text-dark/100">{{ $item[$pkgKey] }}</div>
-                                                    </div>
-                                                    
-                                                    <!-- Visual indicator for package type -->
-                                                    <div class="absolute -bottom-0.5 right-4 h-1 w-8 rounded-t-lg {{ explode(' ', $packageStyles[$pkgKey])[0] }}/50 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+
+                                    <!-- Card body with packaging options -->
+                                    <div class="p-5 max-h-[440px] overflow-y-auto hide-scrollbar">
+                                        <div class="flex flex-col gap-3">
+                                            @foreach (['pet', 'tetra_pak', 'sleek_can', 'aluminum_can', 'tin_can', 'carnation_can', 'bulk'] as $pkgKey)
+                                                <div class="transition-all duration-300 w-full">
+                                                    @if ($item[$pkgKey] != '-')
+                                                        <!-- Available packaging option -->
+                                                        <div
+                                                            class="relative bg-white hover:bg-gradient-to-br hover:from-white hover:to-primary/5 p-3 rounded-xl border {{ explode(' ', $packageStyles[$pkgKey])[2] }} transition-all duration-300 hover:shadow-md group flex items-center gap-3">
+                                                            <!-- Icon container with enhanced styling -->
+                                                            <div
+                                                                class="flex-shrink-0 {{ explode(' ', $packageStyles[$pkgKey])[0] }} {{ explode(' ', $packageStyles[$pkgKey])[1] }} rounded-full p-2.5 border {{ explode(' ', $packageStyles[$pkgKey])[2] }} transition-all duration-300 {{ explode(' ', $packageStyles[$pkgKey])[3] }} {{ explode(' ', $packageStyles[$pkgKey])[4] }}">
+                                                                {!! $packageIcons[$pkgKey] !!}
+                                                            </div>
+
+                                                            <div class="flex-grow">
+                                                                <div
+                                                                    class="text-xs font-semibold uppercase tracking-wider {{ explode(' ', $packageStyles[$pkgKey])[1] }}/70">
+                                                                    {{ str_replace('_', ' ', $pkgKey) }}</div>
+                                                                <div
+                                                                    class="font-medium text-dark/90 group-hover:text-dark/100">
+                                                                    {{ $item[$pkgKey] }}</div>
+                                                            </div>
+
+                                                            <!-- Visual indicator for package type -->
+                                                            <div
+                                                                class="absolute -bottom-0.5 right-4 h-1 w-8 rounded-t-lg {{ explode(' ', $packageStyles[$pkgKey])[0] }}/50 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                            </div>
+                                                        </div>
+                                                    @else
+                                                        <!-- Not available packaging option -->
+                                                        <div
+                                                            class="relative bg-gray-50 p-3 rounded-xl border border-gray-200 opacity-75 flex items-center gap-3">
+                                                            <!-- Desaturated icon container -->
+                                                            <div
+                                                                class="flex-shrink-0 bg-gray-100 text-gray-400 rounded-full p-2.5 border border-gray-200">
+                                                                {!! $packageIcons[$pkgKey] !!}
+                                                            </div>
+
+                                                            <div class="flex-grow">
+                                                                <div
+                                                                    class="text-xs font-semibold uppercase tracking-wider text-gray-400">
+                                                                    {{ str_replace('_', ' ', $pkgKey) }}</div>
+                                                                <div class="font-medium text-gray-500">Not Available
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Unavailable indicator icon -->
+                                                            <div class="flex-shrink-0 text-gray-300">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                                    fill="none" viewBox="0 0 24 24"
+                                                                    stroke="currentColor">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                                        stroke-width="2"
+                                                                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                                </svg>
+                                                            </div>
+                                                        </div>
+                                                    @endif
                                                 </div>
-                                            @else
-                                                <!-- Not available packaging option -->
-                                                <div class="relative bg-gray-50 p-3 rounded-xl border border-gray-200 opacity-75 flex items-center gap-3">
-                                                    <!-- Desaturated icon container -->
-                                                    <div class="flex-shrink-0 bg-gray-100 text-gray-400 rounded-full p-2.5 border border-gray-200">
-                                                        {!! $packageIcons[$pkgKey] !!}
-                                                    </div>
-                                                    
-                                                    <div class="flex-grow">
-                                                        <div class="text-xs font-semibold uppercase tracking-wider text-gray-400">{{ str_replace('_', ' ', $pkgKey) }}</div>
-                                                        <div class="font-medium text-gray-500">Not Available</div>
-                                                    </div>
-                                                    
-                                                    <!-- Unavailable indicator icon -->
-                                                    <div class="flex-shrink-0 text-gray-300">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                        </svg>
-                                                    </div>
-                                                </div>
-                                            @endif
+                                            @endforeach
                                         </div>
-                                    @endforeach
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
                     </div>
                 </div>
-                
-                <!-- Right navigation arrow -->
-                <button id="scroll-right" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-primary rounded-full shadow-lg border border-accent/10 w-12 h-12 flex items-center justify-center backdrop-blur-sm transition-all duration-300 translate-x-6 focus:outline-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                </button>
 
-                <!-- Add progress indicator dots -->
-                <div class="flex justify-center mt-6 gap-2" id="scroll-dots">
-                    <!-- Will be dynamically populated via JS -->
+                <!-- Table view - hidden by default -->
+                <div id="table-view" class="hidden p-4 overflow-x-auto">
+                    <table class="w-full border-collapse border border-accent/10 shadow-sm rounded-lg overflow-hidden">
+                        <thead>
+                            <tr class="bg-gradient-to-r from-primary/10 via-accent/5 to-secondary/10">
+                                <th
+                                    class="text-center py-4 px-5 text-left text-xs font-bold text-primary uppercase tracking-wider border-b-2 border-accent/20">
+                                    Product
+                                </th>
+                                @foreach (['pet', 'tetra_pak', 'sleek_can', 'aluminum_can', 'tin_can', 'carnation_can', 'bulk'] as $index => $pkgKey)
+                                    <th
+                                        class="py-4 px-3 text-center text-xs font-bold text-primary uppercase tracking-wider border-b-2 border-accent/20">
+                                        <div class="flex flex-col items-center justify-center">
+                                            <span>{{ str_replace('_', ' ', $pkgKey) }}</span>
+                                        </div>
+                                    </th>
+                                @endforeach
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-accent/10">
+                            @foreach ($packagingData as $index => $item)
+                                <tr
+                                    class="hover:bg-accent/5 transition-colors {{ $index % 2 == 0 ? 'bg-white' : 'bg-gray-50' }}">
+                                    <td
+                                        class="px-5 py-3.5 text-sm font-semibold text-primary whitespace-normal align-middle border-r border-accent/5">
+                                        <div class="flex items-center gap-3 justify-center">
+                                            <div
+                                                class="flex-shrink-0 w-7 h-7 flex items-center justify-center rounded-full bg-gradient-to-r from-primary/80 to-secondary/80 text-white text-xs font-bold">
+                                                {{ $index + 1 }}
+                                            </div>
+                                            <span>{{ $item['product'] }}</span>
+                                        </div>
+                                    </td>
+                                    @foreach (['pet', 'tetra_pak', 'sleek_can', 'aluminum_can', 'tin_can', 'carnation_can', 'bulk'] as $pkgKey)
+                                        <td
+                                            class="px-3 py-3.5 text-sm whitespace-normal align-middle text-center {{ $loop->last ? '' : 'border-r border-accent/5' }}">
+                                            @if ($item[$pkgKey] != '-')
+                                                <div
+                                                    class="font-medium text-gray-900 px-2 py-1 bg-{{ in_array($pkgKey, ['pet', 'tetra_pak']) ? 'primary' : (in_array($pkgKey, ['sleek_can', 'aluminum_can', 'tin_can', 'carnation_can']) ? 'secondary' : 'accent') }}/5 rounded-lg inline-block min-w-[80px]">
+                                                    {{ $item[$pkgKey] }}
+                                                </div>
+                                            @else
+                                                <span class="text-gray-400 inline-block">—</span>
+                                            @endif
+                                        </td>
+                                    @endforeach
+                                </tr>
+                            @endforeach
+                        </tbody>
+                        <tfoot class="bg-gradient-to-r from-primary/5 via-transparent to-secondary/5">
+                            <tr>
+                                <td colspan="{{ count(['pet', 'tetra_pak', 'sleek_can', 'aluminum_can', 'tin_can', 'carnation_can', 'bulk']) + 1 }}"
+                                    class="px-5 py-3 text-xs text-gray-500">
+                                    <div class="flex items-center justify-between">
+                                        <span>{{ count($packagingData) }} products available</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
-        </div>
-        
-        <!-- Interactive packaging key -->
-        <div class="mt-12 flex flex-wrap justify-center gap-3" data-aos="fade-up" data-aos-delay="200">
-            <div class="bg-white/80 backdrop-blur-sm px-5 py-3 rounded-xl shadow-md border border-accent/10">
-                <div class="text-center mb-3 text-primary/70 font-semibold">Packaging Types Key</div>
-                <div class="flex flex-wrap gap-3 justify-center">
-                    <div class="flex items-center gap-2 bg-primary/5 px-3 py-1.5 rounded-full">
-                        <span class="w-3 h-3 bg-primary rounded-full"></span>
-                        <span class="text-sm text-primary/80">Bottles</span>
-                    </div>
-                    <div class="flex items-center gap-2 bg-secondary/5 px-3 py-1.5 rounded-full">
-                        <span class="w-3 h-3 bg-secondary rounded-full"></span>
-                        <span class="text-sm text-secondary/80">Cans</span>
-                    </div>
-                    <div class="flex items-center gap-2 bg-accent/5 px-3 py-1.5 rounded-full">
-                        <span class="w-3 h-3 bg-accent rounded-full"></span>
-                        <span class="text-sm text-accent/80">Bulk</span>
-                    </div>
-                </div>
-            </div>
+
+            <!-- Right arrow - visible only in slider mode -->
+            <button
+                class="absolute -right-3 lg:-right-8 top-1/2 transform -translate-y-1/2 z-10 bg-gradient-to-l from-white to-white/95 hover:from-white hover:to-white shadow-lg hover:shadow-xl rounded-full w-12 h-12 lg:w-14 lg:h-14 flex items-center justify-center text-primary transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/30 border border-accent/10 backdrop-blur-sm group slider-control"
+                id="pkg-arrow-next">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 lg:h-6 lg:w-6 text-primary/80 group-hover:text-primary transition-all duration-300 transform group-hover:translate-x-0.5"
+                    viewBox="0 0 24 24" fill="none">
+                    <path d="M5 12H19M12 5L19 12L12 19" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <span class="sr-only">Next Options</span>
+                <span
+                    class="absolute inset-0 rounded-full bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+            </button>
+
+            <!-- Enhanced slider pagination dots with active states -->
+            <div class="flex justify-center mt-8 space-x-3 slider-control" id="pkg-pagination"></div>
         </div>
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                // Horizontal scrolling functionality
-                const scrollContainer = document.getElementById('packaging-scroll-container');
-                const scrollLeftBtn = document.getElementById('scroll-left');
-                const scrollRightBtn = document.getElementById('scroll-right');
-                const packagingItems = document.querySelectorAll('.packaging-card');
-                const dotsContainer = document.getElementById('scroll-dots');
-                
-                // Calculate how many dots we need
-                const cardWidth = 384; // 96*4 - width + gap
-                const containerWidth = scrollContainer.clientWidth;
-                const visibleCards = Math.floor(containerWidth / cardWidth);
-                const totalScrollWidth = scrollContainer.scrollWidth;
-                const numDots = Math.ceil(packagingItems.length / visibleCards);
-                
-                // Create progress dots
-                for (let i = 0; i < numDots; i++) {
-                    const dot = document.createElement('button');
-                    dot.classList.add('w-2.5', 'h-2.5', 'rounded-full', 'bg-gray-300', 'hover:bg-gray-400', 'transition-all');
-                    if (i === 0) {
-                        dot.classList.remove('bg-gray-300');
-                        dot.classList.add('bg-primary');
-                    }
-                    dot.setAttribute('data-index', i);
-                    dot.addEventListener('click', () => {
-                        const scrollAmount = i * containerWidth;
-                        scrollContainer.scrollTo({
-                            left: scrollAmount,
-                            behavior: 'smooth'
-                        });
-                    });
-                    dotsContainer.appendChild(dot);
-                }
-                
-                // Scroll left button
-                scrollLeftBtn.addEventListener('click', () => {
-                    scrollContainer.scrollBy({
-                        left: -containerWidth,
-                        behavior: 'smooth'
-                    });
-                });
-                
-                // Scroll right button
-                scrollRightBtn.addEventListener('click', () => {
-                    scrollContainer.scrollBy({
-                        left: containerWidth,
-                        behavior: 'smooth'
-                    });
-                });
-                
-                // Update active dot based on scroll position
-                scrollContainer.addEventListener('scroll', () => {
-                    const scrollPosition = scrollContainer.scrollLeft;
-                    const activeDotIndex = Math.floor(scrollPosition / containerWidth);
-                    
-                    const dots = dotsContainer.querySelectorAll('button');
-                    dots.forEach((dot, index) => {
-                        if (index === activeDotIndex) {
-                            dot.classList.remove('bg-gray-300');
-                            dot.classList.add('bg-primary');
+                const sliderContainer = document.getElementById('pkg-slider-container');
+                const slider = document.getElementById('pkg-slider');
+                const prevButton = document.getElementById('pkg-arrow-prev');
+                const nextButton = document.getElementById('pkg-arrow-next');
+                const paginationDots = document.getElementById('pkg-pagination').querySelectorAll('button');
+                const packagingItems = document.querySelectorAll('.pkg-card');
+
+                // Variables for slider functionality
+                const slideWidth = 384; // width of each slide + margin (md:w-96)
+                let currentPosition = 0;
+                let currentPage = 0;
+                let totalPages = 3; // Will be recalculated based on visible items
+                let itemsPerPage = 2;
+
+                // Function to update pagination dots
+                function updatePaginationDots() {
+                    const paginationContainer = document.getElementById('pkg-pagination');
+                    paginationContainer.innerHTML = ''; // Clear existing dots
+
+                    for (let i = 0; i < totalPages; i++) {
+                        const dot = document.createElement('button');
+                        dot.classList.add('w-3', 'h-3', 'rounded-full', 'transition-all', 'duration-300',
+                            'focus:outline-none');
+                        dot.setAttribute('data-index', i);
+                        dot.setAttribute('aria-label', `Page ${i + 1}`);
+
+                        if (i === currentPage) {
+                            dot.classList.add('bg-primary', 'transform', 'scale-110', 'shadow-md');
                         } else {
-                            dot.classList.remove('bg-primary');
+                            dot.classList.add('bg-gray-300', 'hover:bg-gray-400');
+                        }
+
+                        dot.addEventListener('click', () => {
+                            currentPage = i;
+                            currentPosition = -slideWidth * currentPage * itemsPerPage;
+                            updateSliderPosition();
+                            updateActiveDot();
+                            updateButtonStates();
+                        });
+
+                        paginationContainer.appendChild(dot);
+                    }
+                }
+
+                // Previous button click
+                prevButton.addEventListener('click', () => {
+                    if (currentPage > 0) {
+                        currentPage--;
+                        currentPosition = -slideWidth * currentPage * itemsPerPage;
+                        updateSliderPosition();
+                        updateActiveDot();
+                        updateButtonStates();
+                    }
+                });
+
+                // Next button click
+                nextButton.addEventListener('click', () => {
+                    if (currentPage < totalPages - 1) {
+                        currentPage++;
+                        currentPosition = -slideWidth * currentPage * itemsPerPage;
+                        updateSliderPosition();
+                        updateActiveDot();
+                        updateButtonStates();
+                    }
+                });
+
+                // Enhanced function to determine items per page based on screen width
+                function getItemsPerPage() {
+                    return window.innerWidth < 768 ? 1 : 2;
+                }
+
+                // Update slider position
+                function updateSliderPosition() {
+                    if (window.innerWidth < 768) {
+                        // For mobile: use container width for smooth scrolling
+                        const containerWidth = sliderContainer.offsetWidth;
+                        slider.style.transform = `translateX(-${currentPage * containerWidth}px)`;
+                    } else {
+                        // For desktop: use fixed slide width
+                        slider.style.transform = `translateX(${currentPosition}px)`;
+                    }
+                }
+
+                // Update active dot indicator
+                function updateActiveDot() {
+                    const dots = document.getElementById('pkg-pagination').querySelectorAll('button');
+                    dots.forEach((dot, index) => {
+                        if (index === currentPage) {
+                            dot.classList.remove('bg-gray-300');
+                            dot.classList.add('bg-primary', 'transform', 'scale-110');
+                        } else {
+                            dot.classList.remove('bg-primary', 'transform', 'scale-110');
                             dot.classList.add('bg-gray-300');
                         }
                     });
-                    
-                    // Show/hide scroll buttons based on scroll position
-                    if (scrollPosition <= 0) {
-                        scrollLeftBtn.classList.add('opacity-50', 'cursor-not-allowed');
-                    } else {
-                        scrollLeftBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                }
+
+                // Update button states (disabled when at the ends)
+                function updateButtonStates() {
+                    // Reset states
+                    prevButton.classList.remove('opacity-50', 'cursor-not-allowed');
+                    nextButton.classList.remove('opacity-50', 'cursor-not-allowed');
+
+                    // Apply disabled states
+                    if (currentPage === 0) {
+                        prevButton.classList.add('opacity-50', 'cursor-not-allowed');
                     }
-                    
-                    if (scrollPosition >= totalScrollWidth - containerWidth - 10) {
-                        scrollRightBtn.classList.add('opacity-50', 'cursor-not-allowed');
+
+                    if (currentPage === totalPages - 1 || totalPages === 0) {
+                        nextButton.classList.add('opacity-50', 'cursor-not-allowed');
+                    }
+                }
+
+                // Enhanced window resize handler
+                window.addEventListener('resize', function() {
+                    // Update items per page
+                    itemsPerPage = getItemsPerPage();
+
+                    // Recalculate visible pages
+                    totalPages = Math.ceil(packagingItems.length / itemsPerPage);
+
+                    // Make sure current page is still valid
+                    if (currentPage >= totalPages) {
+                        currentPage = totalPages - 1;
+                    }
+
+                    // Update slider position
+                    updateSliderPosition();
+                    updatePaginationDots();
+                    updateActiveDot();
+                    updateButtonStates();
+                });
+
+                // Initialize
+                itemsPerPage = getItemsPerPage();
+                totalPages = Math.ceil(packagingItems.length / itemsPerPage);
+                updatePaginationDots();
+                updateButtonStates();
+
+                // Touch swipe support
+                let touchStartX = 0;
+                let touchEndX = 0;
+
+                slider.addEventListener('touchstart', e => {
+                    touchStartX = e.changedTouches[0].screenX;
+                });
+
+                slider.addEventListener('touchend', e => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                });
+
+                function handleSwipe() {
+                    const swipeThreshold = 50;
+                    if (touchStartX - touchEndX > swipeThreshold) {
+                        // Swipe left - next
+                        nextButton.click();
+                    } else if (touchEndX - touchStartX > swipeThreshold) {
+                        // Swipe right - previous
+                        prevButton.click();
+                    }
+                }
+            });
+
+            // View toggle functionality
+            document.addEventListener('DOMContentLoaded', function() {
+                const viewToggleBtn = document.getElementById('view-toggle-btn');
+                const viewToggleText = document.getElementById('view-toggle-text');
+                const sliderView = document.getElementById('slider-view');
+                const tableView = document.getElementById('table-view');
+                const sliderControls = document.querySelectorAll('.slider-control');
+                let isTableView = false;
+
+                // Toggle between slider and table views
+                viewToggleBtn.addEventListener('click', function() {
+                    isTableView = !isTableView;
+
+                    if (isTableView) {
+                        // Show table view
+                        sliderView.classList.add('hidden');
+                        tableView.classList.remove('hidden');
+                        viewToggleText.textContent = 'View as Cards';
+
+                        // Hide slider controls
+                        sliderControls.forEach(control => {
+                            control.classList.add('hidden');
+                        });
                     } else {
-                        scrollRightBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                        // Show slider view
+                        tableView.classList.add('hidden');
+                        sliderView.classList.remove('hidden');
+                        viewToggleText.textContent = 'View as Table';
+
+                        // Show slider controls
+                        sliderControls.forEach(control => {
+                            control.classList.remove('hidden');
+                        });
+
+                        // Reset slider position
+                        updateSliderPosition();
                     }
                 });
             });
         </script>
     </div>
+
+    <!-- Bottom wave divider -->
+    <div class="absolute bottom-0 left-0 w-full">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" fill="#ffffff" preserveAspectRatio="none"
+            class="w-full h-8 sm:h-12">
+            <path
+                d="M0,32L80,42.7C160,53,320,75,480,69.3C640,64,800,32,960,26.7C1120,21,1280,43,1360,53.3L1440,64L1440,100L1360,100C1280,100,1120,100,960,100C800,100,640,100,480,100C320,100,160,100,80,100L0,100Z">
+            </path>
+        </svg>
+    </div>
 </section>
 
 <style>
-    .bg-pattern-dots {
-        background-image: radial-gradient(circle, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
-        background-size: 24px 24px;
+    .bg-pattern {
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0  0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
 
-    @keyframes pulse-slow {
+    .bg-pattern-grid {
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+        background-size: 20px 20px;
+    }
+
+    @keyframes float-slow {
 
         0%,
         100% {
-            opacity: 0.6;
-            transform: scale(1);
+            transform: translateY(0) scale(1);
         }
 
         50% {
-            opacity: 0.8;
-            transform: scale(1.05);
+            transform: translateY(-15px) scale(1.05);
         }
     }
 
-    .animate-pulse-slow {
-        animation: pulse-slow 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    .animate-float-slow {
+        animation: float-slow 18s ease-in-out infinite;
+    }
+
+    /* Mobile-optimized slider styling */
+    #pkg-slider-container {
+        width: 100%;
+    }
+
+    #pkg-slider {
+        width: 100%;
+    }
+
+    .pkg-card {
+        padding: 0.5rem;
+    }
+
+    @media (max-width: 767px) {
+
+        /* Mobile specific styling */
+        #pkg-slider {
+            gap: 0;
+        }
+
+        .pkg-card {
+            width: 100% !important;
+            max-width: 100%;
+            padding: 0.25rem;
+        }
+
+        /* Improved touch targets */
+        #pkg-arrow-prev,
+        #pkg-arrow-next {
+            width: 44px;
+            height: 44px;
+        }
+
+        #pkg-pagination button {
+            width: 10px;
+            height: 10px;
+            margin: 0 6px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        #pkg-slider {
+            gap: 2rem;
+        }
+
+        .pkg-card {
+            width: 384px;
+            padding: 0;
+        }
     }
 
     /* Hide scrollbar */
     .hide-scrollbar::-webkit-scrollbar {
         display: none;
     }
+
     .hide-scrollbar {
         -ms-overflow-style: none;
         scrollbar-width: none;

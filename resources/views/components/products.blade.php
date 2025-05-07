@@ -93,14 +93,14 @@
                     class="absolute inset-0 rounded-full bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
             </button>
 
-            <!-- Improved scrollable product container -->
+            <!-- Improved scrollable product container with enhanced mobile styling -->
             <div class="overflow-hidden rounded-xl" id="product-slider-container">
-                <div class="flex space-x-6 transition-all duration-700 ease-out" id="product-slider">
+                <div class="flex transition-all duration-700 ease-out" id="product-slider">
                     <!-- Product cards with category attributes for filtering -->
-                    <div class="flex-shrink-0 w-80 md:w-96 transform transition-all duration-500 product-item"
+                    <div class="flex-shrink-0 md:space-x-6 w-full md:w-96 transform transition-all duration-500 product-item"
                         data-category="coconut">
                         <x-product-card title="Coconut Water"
-                            image="{{ asset('assets/images/products/Coconut Water.png') }}" class="h-full" />
+                            image="{{ asset('assets/images/products/Coconut Water.png') }}" class="h-full mobile-card" />
                     </div>
 
                     <div class="flex-shrink-0 w-80 md:w-96 product-item" data-category="coconut">
@@ -197,16 +197,17 @@
                         filterButtons.forEach(btn => {
                             // Remove active state styling
                             btn.classList.remove('active');
-                            btn.classList.remove('bg-gradient-to-r', 'from-primary', 'to-primary/90', 'text-white', 'shadow-md');
+                            btn.classList.remove('bg-gradient-to-r', 'from-primary',
+                                'to-primary/90', 'text-white', 'shadow-md');
                             btn.classList.add('text-dark/80', 'hover:text-dark');
-                            
+
                             // Reset icon styling
                             const iconContainer = btn.querySelector('span:first-of-type');
                             if (iconContainer) {
                                 if (btn.getAttribute('data-filter') === 'coconut') {
                                     iconContainer.classList.remove('bg-white/20');
                                     iconContainer.classList.add('bg-primary/10');
-                                    
+
                                     // Reset icon color
                                     const icon = iconContainer.querySelector('i');
                                     if (icon) {
@@ -215,26 +216,27 @@
                                     }
                                 }
                             }
-                            
+
                             // Hide the indicator dot
                             const indicatorDot = btn.querySelector('span:last-of-type');
                             if (indicatorDot) {
                                 indicatorDot.classList.add('opacity-0');
                             }
                         });
-                        
+
                         // Set active state styling for clicked button
                         this.classList.add('active');
-                        this.classList.add('bg-gradient-to-r', 'from-primary', 'to-primary/90', 'text-white', 'shadow-md');
+                        this.classList.add('bg-gradient-to-r', 'from-primary', 'to-primary/90',
+                            'text-white', 'shadow-md');
                         this.classList.remove('text-dark/80', 'hover:text-dark');
-                        
+
                         // Update icon styling for active state
                         const activeIconContainer = this.querySelector('span:first-of-type');
                         if (activeIconContainer) {
                             if (this.getAttribute('data-filter') === 'coconut') {
                                 activeIconContainer.classList.add('bg-white/20');
                                 activeIconContainer.classList.remove('bg-primary/10');
-                                
+
                                 // Update icon color
                                 const icon = activeIconContainer.querySelector('i');
                                 if (icon) {
@@ -246,16 +248,16 @@
                                 activeIconContainer.classList.remove('bg-secondary/10');
                             }
                         }
-                        
+
                         // Show the indicator dot
                         const activeIndicatorDot = this.querySelector('span:last-of-type');
                         if (activeIndicatorDot) {
                             activeIndicatorDot.classList.remove('opacity-0');
                         }
-                        
+
                         // Filter functionality
                         const filterValue = this.getAttribute('data-filter');
-                        
+
                         // Filter products
                         let visibleCount = 0;
                         productItems.forEach(item => {
@@ -269,17 +271,17 @@
                                 item.classList.add('hidden');
                             }
                         });
-                        
+
                         // Reset slider position
                         currentPosition = 0;
                         currentPage = 0;
-                        
+
                         // Recalculate total pages based on visible products
                         totalPages = Math.ceil(visibleCount / productsPerPage);
-                        
+
                         // Update pagination dots
                         updatePaginationDots();
-                        
+
                         // Update slider
                         updateSliderPosition();
                         updateActiveDot();
@@ -339,9 +341,21 @@
                     }
                 });
 
-                // Update slider position with smooth animation
+                // Enhanced function to determine products per page based on screen width
+                function getProductsPerPage() {
+                    return window.innerWidth < 768 ? 1 : 2;
+                }
+                
+                // Update slider position for better mobile handling
                 function updateSliderPosition() {
-                    slider.style.transform = `translateX(${currentPosition}px)`;
+                    if (window.innerWidth < 768) {
+                        // For mobile: use container width for smooth scrolling
+                        const containerWidth = sliderContainer.offsetWidth;
+                        slider.style.transform = `translateX(-${currentPage * containerWidth}px)`;
+                    } else {
+                        // For desktop: use fixed slide width
+                        slider.style.transform = `translateX(${currentPosition}px)`;
+                    }
                 }
 
                 // Update active dot indicator
@@ -374,6 +388,27 @@
                     }
                 }
 
+                // Enhanced window resize handler
+                window.addEventListener('resize', function() {
+                    // Update products per page
+                    productsPerPage = getProductsPerPage();
+                    
+                    // Recalculate visible pages
+                    const visibleItems = document.querySelectorAll('.product-item:not(.hidden)');
+                    totalPages = Math.ceil(visibleItems.length / productsPerPage);
+                    
+                    // Make sure current page is still valid
+                    if (currentPage >= totalPages) {
+                        currentPage = totalPages - 1;
+                    }
+                    
+                    // Update slider position
+                    updateSliderPosition();
+                    updatePaginationDots();
+                    updateActiveDot();
+                    updateButtonStates();
+                });
+
                 // Initialize the slider
                 updatePaginationDots();
                 updateButtonStates();
@@ -393,20 +428,21 @@
                             item.classList.add('hidden');
                         }
                     });
-                    
+
                     // Set coconut button as active
                     filterButtons.forEach(btn => {
                         if (btn.getAttribute('data-filter') === 'coconut') {
                             // Apply active styling
-                            btn.classList.add('active', 'bg-gradient-to-r', 'from-primary', 'to-primary/90', 'text-white', 'shadow-md');
+                            btn.classList.add('active', 'bg-gradient-to-r', 'from-primary', 'to-primary/90',
+                                'text-white', 'shadow-md');
                             btn.classList.remove('text-dark/80', 'hover:text-dark');
-                            
+
                             // Style the icon container
                             const iconContainer = btn.querySelector('span:first-of-type');
                             if (iconContainer) {
                                 iconContainer.classList.add('bg-white/20');
                                 iconContainer.classList.remove('bg-primary/10');
-                                
+
                                 // Update icon color
                                 const icon = iconContainer.querySelector('i');
                                 if (icon) {
@@ -414,7 +450,7 @@
                                     icon.classList.remove('text-primary');
                                 }
                             }
-                            
+
                             // Show the indicator dot
                             const indicatorDot = btn.querySelector('span:last-of-type');
                             if (indicatorDot) {
@@ -422,13 +458,13 @@
                             }
                         }
                     });
-                    
+
                     // Recalculate total pages
                     totalPages = Math.ceil(visibleCount / productsPerPage);
-                    
+
                     // Update pagination
                     updatePaginationDots();
-                    
+
                     // Reset position
                     currentPosition = 0;
                     currentPage = 0;
@@ -436,7 +472,7 @@
                     updateActiveDot();
                     updateButtonStates();
                 };
-                
+
                 // Call function on page load
                 initializeCoconutFilter();
 
@@ -481,5 +517,68 @@
 <style>
     .bg-pattern {
         background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0  0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    /* Mobile-optimized product slider styling */
+    #product-slider-container {
+        width: 100%;
+    }
+    
+    #product-slider {
+        width: 100%;
+    }
+    
+    .product-item {
+        padding: 0.5rem;
+    }
+    
+    @media (max-width: 767px) {
+        /* Mobile specific styling */
+        #product-slider {
+            gap: 0;
+        }
+        
+        .product-item {
+            width: 100% !important;
+            max-width: 100%;
+            padding: 0.25rem;
+        }
+        
+        /* Enhanced styling for mobile cards */
+        .mobile-card {
+            margin: 0 auto;
+            max-width: 320px;
+        }
+        
+        /* Add custom shadows and highlighting */
+        .mobile-card .card {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        /* Improved touch targets */
+        #slide-arrow-prev, #slide-arrow-next {
+            width: 44px;
+            height: 44px;
+        }
+    }
+    
+    @media (min-width: 768px) {
+        #product-slider {
+            gap: 2rem;
+        }
+        
+        .product-item {
+            width: 384px;
+            padding: 0;
+        }
+    }
+
+    /* Additional mobile enhancement for slider dots */
+    @media (max-width: 767px) {
+        #slider-pagination button {
+            width: 10px;
+            height: 10px;
+            margin: 0 6px;
+        }
     }
 </style>

@@ -18,9 +18,10 @@
             </div>
             <h2
                 class="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-secondary mt-3 mb-4">
-                The CausaLabel Story</h2>
+                The Yown Brand Story</h2>
             <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto mb-5"></div>
-            <p class="mt-4 max-w-3xl mx-auto text-dark/80 text-lg">Your reliable OEM manufacturing partner, committed to delivering exceptional quality products that help your brand stand out in the global marketplace.</p>
+            <p class="mt-4 max-w-3xl mx-auto text-dark/80 text-lg">Your reliable OEM manufacturing partner, committed to
+                delivering exceptional quality products that help your brand stand out in the global marketplace.</p>
         </div>
 
         <!-- Main content with enhanced layout -->
@@ -102,7 +103,8 @@
                     <div class="space-y-6 text-dark/80 leading-relaxed text-base sm:text-lg">
                         <p
                             class="relative pl-5 border-l-3 border-primary text-lg sm:text-xl font-medium text-dark leading-snug">
-                            Yobe is a trusted OEM company from Indonesia specializing in the production and export of
+                            Yown Brand is a trusted OEM company from Indonesia specializing in the production and
+                            export of
                             premium coconut and charcoal-based products.
                         </p>
 
@@ -157,7 +159,7 @@
                             <span>Natural Materials</span>
                         </div>
                         <div
-                            class="bg-primary/5 rounded-full py-1.5 px-4 text-sm font-medium text-primary flex items-center">
+                            class="bg-secondary/5 rounded-full py-1.5 px-4 text-sm font-medium text-secondary flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -166,7 +168,7 @@
                             <span>Sustainable</span>
                         </div>
                         <div
-                            class="bg-primary/5 rounded-full py-1.5 px-4 text-sm font-medium text-primary flex items-center">
+                            class="bg-secondary/5 rounded-full py-1.5 px-4 text-sm font-medium text-secondary flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

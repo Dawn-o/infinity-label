@@ -10,19 +10,33 @@
                 products are certified by leading regulatory bodies worldwide.</p>
         </div>
         
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
-            <x-certification-item name="ACO Certified Organic" icon="check-circle" />
-            <x-certification-item name="No Artificial Colors & Flavors" icon="ban" delay="50" />
-            <x-certification-item name="USDA Organic" icon="award" delay="100" />
-            <x-certification-item name="Kosher" icon="star" delay="150" />
-            <x-certification-item name="Non GMO" icon="dna" delay="200" />
-            <x-certification-item name="GMP" icon="tasks" delay="250" />
-            <x-certification-item name="HACCP" icon="shield-alt" />
-            <x-certification-item name="Vegan" icon="leaf" delay="50" />
-            <x-certification-item name="BPA Free" icon="wine-bottle" delay="100" />
-            <x-certification-item name="Halal" icon="moon" delay="150" />
-            <x-certification-item name="FDA" icon="file-medical-alt" delay="200" />
-            <x-certification-item name="BRC" icon="certificate" delay="250" />
+        <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-8">
+            <!-- Just place certification images without cards or text -->
+            <img src="{{ asset('assets/images/certifications/aco certified organic.png') }}" alt="ACO Certified Organic" class="w-96 object-contain mx-auto" data-aos="fade-up">
+            
+            <img src="{{ asset('assets/images/certifications/no artificial color.jpg') }}" alt="No Artificial Colors" class="w-40 object-contain mx-auto" data-aos="fade-up" data-aos-delay="50">
+            
+            <img src="{{ asset('assets/images/certifications/no artificial flavors.jpg') }}" alt="No Artificial Flavors" class="w-40 object-contain mx-auto" data-aos="fade-up" data-aos-delay="100">
+            
+            <img src="{{ asset('assets/images/certifications/usda organic.png') }}" alt="USDA Organic" class="w-40 object-contain mx-auto" data-aos="fade-up" data-aos-delay="150">
+            
+            <img src="{{ asset('assets/images/certifications/kosher.jpg') }}" alt="Kosher" class="w-40 object-contain mx-auto" data-aos="fade-up" data-aos-delay="200">
+            
+            <img src="{{ asset('assets/images/certifications/non gmo.png') }}" alt="Non GMO" class="w-96 object-contain mx-auto" data-aos="fade-up" data-aos-delay="250">
+            
+            <img src="{{ asset('assets/images/certifications/gmp.png') }}" alt="GMP" class="w-40 object-contain mx-auto" data-aos="fade-up">
+            
+            <img src="{{ asset('assets/images/certifications/haccp.jpg') }}" alt="HACCP" class="w-40 object-contain mx-auto" data-aos="fade-up" data-aos-delay="50">
+            
+            <img src="{{ asset('assets/images/certifications/vegan.png') }}" alt="Vegan" class="w-40 object-contain mx-auto" data-aos="fade-up" data-aos-delay="100">
+            
+            <img src="{{ asset('assets/images/certifications/bpa free.jpg') }}" alt="BPA Free" class="w-40 object-contain mx-auto" data-aos="fade-up" data-aos-delay="150">
+            
+            <img src="{{ asset('assets/images/certifications/halal.jpg') }}" alt="Halal" class="w-40 object-contain mx-auto" data-aos="fade-up" data-aos-delay="200">
+            
+            <img src="{{ asset('assets/images/certifications/fda.jpg') }}" alt="FDA" class="w-40 object-contain mx-auto" data-aos="fade-up" data-aos-delay="250">
+            
+            <img src="{{ asset('assets/images/certifications/brc.jpg') }}" alt="BRC" class="w-40 object-contain mx-auto" data-aos="fade-up">
         </div>
     </div>
 </section>

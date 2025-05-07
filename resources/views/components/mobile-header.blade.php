@@ -14,7 +14,7 @@
                 <div class="absolute inset-0 bg-secondary/30 rounded-lg blur-md -z-10 opacity-0 group-hover:opacity-70 transition-opacity duration-300 scale-110"></div>
             </div>
             <div class="flex flex-col">
-                <span class="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">Yobe.</span>
+                <span class="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">Yown Brand</span>
                 <!-- Added OEM PARTNER text to match desktop -->
                 <span class="text-[10px] text-dark/70 tracking-wider font-medium">OEM PARTNER</span>
             </div>

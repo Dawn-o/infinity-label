@@ -14,7 +14,7 @@
                 <div class="w-2 h-2 bg-accent rounded-full mr-2 animate-pulse"></div>
                 <span class="text-secondary font-semibold text-sm uppercase tracking-wider">Our Purpose</span>
             </div>
-            <h2 class="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-secondary mt-3 mb-4">Why Choose Yobe as Your OEM Partner</h2>
+            <h2 class="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-secondary mt-3 mb-4">Why Choose Yown Brand as Your OEM Partner</h2>
             <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto mb-5"></div>
             <p class="mt-4 max-w-3xl mx-auto text-dark/80 text-lg">Dedicated to excellence in private label manufacturing for global retail markets</p>
         </div>

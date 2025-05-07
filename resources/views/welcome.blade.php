@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Yobe - Trusted OEM Partner for International Retail & Supermarket Brands">
-    <title>Yobe - Your OEM Manufacturing Partner</title>
+    <meta name="description" content="Yown Brand - Trusted OEM Partner for International Retail & Supermarket Brands">
+    <title>Yown Brand - Your OEM Manufacturing Partner</title>
     <x-partials.head-scripts />
     <x-partials.head-styles />
 </head>
@@ -30,6 +30,11 @@
     <x-certifications />
     <x-contact />
     <x-footer />
+    
+    <x-floating-whatsapp 
+        phoneNumber="6282380898261" 
+        tooltip="Contact us via WhatsApp" 
+    />
 
     <x-partials.footer-scripts />
 </body>
