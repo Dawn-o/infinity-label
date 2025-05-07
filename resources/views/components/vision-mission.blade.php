@@ -109,8 +109,8 @@
                                 <h4
                                     class="font-bold text-primary group-hover/card:text-transparent group-hover/card:bg-clip-text group-hover/card:bg-gradient-to-r group-hover/card:from-primary group-hover/card:to-secondary transition-all duration-300 flex items-center text-base">
                                     <div
-                                        class="flex-shrink-0 w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center mr-3 group-hover/card:bg-primary/20 transition-colors duration-300">
-                                        <i class="fas fa-check text-xs text-primary"></i>
+                                        class="flex-shrink-0 w-9 h-9 rounded-lg bg-secondary/10 flex items-center justify-center mr-3 group-hover/card:bg-secondary/20 transition-colors duration-300">
+                                        <i class="fas fa-check text-xs text-secondary"></i>
                                     </div>
                                     High-Quality OEM Solutions
                                 </h4>
@@ -139,8 +139,8 @@
                                 <h4
                                     class="font-bold text-primary group-hover/card:text-transparent group-hover/card:bg-clip-text group-hover/card:bg-gradient-to-r group-hover/card:from-primary group-hover/card:to-secondary transition-all duration-300 flex items-center text-base">
                                     <div
-                                        class="flex-shrink-0 w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center mr-3 group-hover/card:bg-primary/20 transition-colors duration-300">
-                                        <i class="fas fa-check text-xs text-primary"></i>
+                                        class="flex-shrink-0 w-9 h-9 rounded-lg bg-secondary/10 flex items-center justify-center mr-3 group-hover/card:bg-secondary/20 transition-colors duration-300">
+                                        <i class="fas fa-check text-xs text-secondary"></i>
                                     </div>
                                     Client Satisfaction
                                 </h4>
@@ -169,8 +169,8 @@
                                 <h4
                                     class="font-bold text-primary group-hover/card:text-transparent group-hover/card:bg-clip-text group-hover/card:bg-gradient-to-r group-hover/card:from-primary group-hover/card:to-secondary transition-all duration-300 flex items-center text-base">
                                     <div
-                                        class="flex-shrink-0 w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center mr-3 group-hover/card:bg-accent/20 transition-colors duration-300">
-                                        <i class="fas fa-check text-xs text-accent"></i>
+                                        class="flex-shrink-0 w-9 h-9 rounded-lg bg-secondary/10 flex items-center justify-center mr-3 group-hover/card:bg-secondary/20 transition-colors duration-300">
+                                        <i class="fas fa-check text-xs text-secondary"></i>
                                     </div>
                                     Global Network Development
                                 </h4>
