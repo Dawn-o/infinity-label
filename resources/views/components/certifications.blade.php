@@ -286,53 +286,63 @@
 
         .tooltip-content {
             position: absolute;
-            bottom: calc(100% + 10px);
-            left: 50%;
-            transform: translateX(-50%);
-            background: white;
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-            width: max-content;
-            max-width: 200px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            border: 1px solid rgba(var(--color-primary-rgb), 0.1);
+            top: 50%; /* Start from the middle of the image */
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+            border-bottom-left-radius: 0.75rem;
+            border-bottom-right-radius: 0.75rem;
+            padding: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-align: center;
+            transition: all 0.2s ease;
         }
 
+        .tooltip-content h4 {
+            color: white; /* White text for better contrast on dark background */
+            margin-bottom: 0.25rem;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .tooltip-content p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.7rem;
+            line-height: 1.3;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        /* Remove the arrow that was previously used */
         .tooltip-content:after {
-            content: '';
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -8px;
-            width: 0;
-            height: 0;
-            border-left: 8px solid transparent;
-            border-right: 8px solid transparent;
-            border-top: 8px solid white;
+            display: none;
         }
 
-        /* Mobile optimization - horizontal scrolling experience */
+        /* Mobile optimization */
         @media (max-width: 640px) {
             #certifications .grid {
-                grid-template-columns: repeat(3, 200px);
-                grid-gap: 1rem;
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: 0.75rem;
                 padding-bottom: 1rem;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                scrollbar-width: none;
-                /* Firefox */
-                -ms-overflow-style: none;
-                /* IE/Edge */
-            }
-
-            #certifications .grid::-webkit-scrollbar {
-                display: none;
-                /* Chrome/Safari/Opera */
+                overflow-x: visible;
             }
 
             .certification-item {
-                scroll-snap-align: center;
+                padding: 0.75rem;
+            }
+            
+            /* Same overlay style for mobile */
+            .tooltip-content {
+                font-size: 0.7rem;
+            }
+            
+            .tooltip-content p {
+                font-size: 0.65rem;
+                line-height: 1.3;
             }
         }
     </style>
