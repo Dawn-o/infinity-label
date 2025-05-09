@@ -32,7 +32,7 @@
 
             <div class="certification-item relative group" data-aos="fade-up" data-aos-delay="50"
                 x-data="{ tooltip: false }">
-                <img src="{{ asset('assets/images/certifications/No Artificial Colors.jpg') }}"
+                <img src="{{ asset('assets/images/certifications/No Artificial Color.jpg') }}"
                     alt="No Artificial Colors" class="w-full h-32 object-contain mx-auto transition-all">
 
                 <!-- Tooltip -->
