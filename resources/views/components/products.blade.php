@@ -3,8 +3,8 @@
 $products = [
     'coconut' => [
         ['title' => 'Coconut Water', 'image' => 'assets/images/products/coconut/Coconut Water.png'],
-        ['title' => 'Coconut Milk for Beverage', 'image' => 'assets/images/products/coconut/Coconut Milk for Beverage.png'],
-        ['title' => 'Coconut Milk for Cooking', 'image' => 'assets/images/products/coconut/Coconut Milk for Cooking.png'],
+        ['title' => 'Coconut Milk for Beverage', 'image' => 'assets/images/products/coconut/Coconut Milk For Beverage.png'],
+        ['title' => 'Coconut Milk for Cooking', 'image' => 'assets/images/products/coconut/Coconut Milk For Cooking.png'],
         ['title' => 'Coconut Flour', 'image' => 'assets/images/products/coconut/Coconut Flour.png'],
         ['title' => 'Coconut Desiccated', 'image' => 'assets/images/products/coconut/Coconut Desiccated.png'],
         ['title' => 'Coconut Chips', 'image' => 'assets/images/products/coconut/Coconut Chips.png'],

@@ -14,7 +14,7 @@
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8">
             <!-- Certification images with tooltips -->
             <div class="certification-item relative group" data-aos="fade-up" x-data="{ tooltip: false }">
-                <img src="{{ asset('assets/images/certifications/aco certified organic.png') }}"
+                <img src="{{ asset('assets/images/certifications/ACO Certified Organic.png') }}"
                     alt="ACO Certified Organic" class="w-full h-32 object-contain mx-auto transition-all">
 
                 <!-- Tooltip -->
@@ -32,7 +32,7 @@
 
             <div class="certification-item relative group" data-aos="fade-up" data-aos-delay="50"
                 x-data="{ tooltip: false }">
-                <img src="{{ asset('assets/images/certifications/no artificial color.jpg') }}"
+                <img src="{{ asset('assets/images/certifications/No Artificial Colors.jpg') }}"
                     alt="No Artificial Colors" class="w-full h-32 object-contain mx-auto transition-all">
 
                 <!-- Tooltip -->
@@ -50,7 +50,7 @@
 
             <div class="certification-item relative group" data-aos="fade-up" data-aos-delay="100"
                 x-data="{ tooltip: false }">
-                <img src="{{ asset('assets/images/certifications/no artificial flavors.jpg') }}"
+                <img src="{{ asset('assets/images/certifications/No Artificial Flavors.jpg') }}"
                     alt="No Artificial Flavors" class="w-full h-32 object-contain mx-auto transition-all">
 
                 <!-- Tooltip -->
@@ -68,7 +68,7 @@
 
             <div class="certification-item relative group" data-aos="fade-up" data-aos-delay="150"
                 x-data="{ tooltip: false }">
-                <img src="{{ asset('assets/images/certifications/usda organic.png') }}" alt="USDA Organic"
+                <img src="{{ asset('assets/images/certifications/USDA Organic.png') }}" alt="USDA Organic"
                     class="w-full h-32 object-contain mx-auto transition-all">
 
                 <!-- Tooltip -->
@@ -86,7 +86,7 @@
 
             <div class="certification-item relative group" data-aos="fade-up" data-aos-delay="200"
                 x-data="{ tooltip: false }">
-                <img src="{{ asset('assets/images/certifications/kosher.jpg') }}" alt="Kosher"
+                <img src="{{ asset('assets/images/certifications/Kosher.jpg') }}" alt="Kosher"
                     class="w-full h-32 object-contain mx-auto transition-all">
 
                 <!-- Tooltip -->
@@ -104,7 +104,7 @@
 
             <div class="certification-item relative group" data-aos="fade-up" data-aos-delay="250"
                 x-data="{ tooltip: false }">
-                <img src="{{ asset('assets/images/certifications/non gmo.png') }}" alt="Non GMO"
+                <img src="{{ asset('assets/images/certifications/NON GMO.png') }}" alt="Non GMO"
                     class="w-full h-32 object-contain mx-auto transition-all">
 
                 <!-- Tooltip -->
@@ -121,7 +121,7 @@
             </div>
 
             <div class="certification-item relative group" data-aos="fade-up" x-data="{ tooltip: false }">
-                <img src="{{ asset('assets/images/certifications/gmp.png') }}" alt="GMP"
+                <img src="{{ asset('assets/images/certifications/GMP.png') }}" alt="GMP"
                     class="w-full h-32 object-contain mx-auto transition-all">
 
                 <!-- Tooltip -->
@@ -139,7 +139,7 @@
 
             <div class="certification-item relative group" data-aos="fade-up" data-aos-delay="50"
                 x-data="{ tooltip: false }">
-                <img src="{{ asset('assets/images/certifications/haccp.jpg') }}" alt="HACCP"
+                <img src="{{ asset('assets/images/certifications/HACCP.jpg') }}" alt="HACCP"
                     class="w-full h-32 object-contain mx-auto transition-all">
 
                 <!-- Tooltip -->
@@ -157,7 +157,7 @@
 
             <div class="certification-item relative group" data-aos="fade-up" data-aos-delay="100"
                 x-data="{ tooltip: false }">
-                <img src="{{ asset('assets/images/certifications/vegan.png') }}" alt="Vegan"
+                <img src="{{ asset('assets/images/certifications/Vegan.png') }}" alt="Vegan"
                     class="w-full h-32 object-contain mx-auto transition-all">
 
                 <!-- Tooltip -->
@@ -175,7 +175,7 @@
 
             <div class="certification-item relative group" data-aos="fade-up" data-aos-delay="150"
                 x-data="{ tooltip: false }">
-                <img src="{{ asset('assets/images/certifications/bpa free.jpg') }}" alt="BPA Free"
+                <img src="{{ asset('assets/images/certifications/BPA Free.jpg') }}" alt="BPA Free"
                     class="w-full h-32 object-contain mx-auto transition-all">
 
                 <!-- Tooltip -->
@@ -193,7 +193,7 @@
 
             <div class="certification-item relative group" data-aos="fade-up" data-aos-delay="200"
                 x-data="{ tooltip: false }">
-                <img src="{{ asset('assets/images/certifications/halal.jpg') }}" alt="Halal"
+                <img src="{{ asset('assets/images/certifications/Halal.jpg') }}" alt="Halal"
                     class="w-full h-32 object-contain mx-auto transition-all">
 
                 <!-- Tooltip -->
@@ -211,7 +211,7 @@
 
             <div class="certification-item relative group" data-aos="fade-up" data-aos-delay="250"
                 x-data="{ tooltip: false }">
-                <img src="{{ asset('assets/images/certifications/fda.jpg') }}" alt="FDA"
+                <img src="{{ asset('assets/images/certifications/FDA.jpg') }}" alt="FDA"
                     class="w-full h-32 object-contain mx-auto transition-all">
 
                 <!-- Tooltip -->
@@ -228,7 +228,7 @@
             </div>
 
             <div class="certification-item relative group" data-aos="fade-up" x-data="{ tooltip: false }">
-                <img src="{{ asset('assets/images/certifications/brc.jpg') }}" alt="BRC"
+                <img src="{{ asset('assets/images/certifications/BRC.jpg') }}" alt="BRC"
                     class="w-full h-32 object-contain mx-auto transition-all">
 
                 <!-- Tooltip -->
