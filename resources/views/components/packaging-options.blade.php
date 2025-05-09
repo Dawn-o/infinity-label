@@ -71,38 +71,16 @@
                             $packagingData = config('packaging-data');
 
                             $packageIcons = [
-                                'pet' =>
-                                    '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>',
-                                'tetra_pak' =>
-                                    '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>',
-                                'sleek_can' =>
-                                    '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>',
-                                'aluminum_can' =>
-                                    '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"></path></svg>',
-                                'tin_can' =>
-                                    '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>',
-                                'carnation_can' =>
-                                    '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>',
-                                'bulk' =>
-                                    '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>',
+                                'pet' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>',
+                                'tetra_pak' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>',
+                                'sleek_can' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>',
+                                'aluminum_can' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"></path></svg>',
+                                'tin_can' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>',
+                                'carnation_can' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>',
+                                'bulk' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>',
                             ];
-
-                            $packageStyles = [
-                                'pet' =>
-                                    'bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary hover:text-white',
-                                'tetra_pak' =>
-                                    'bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary hover:text-white',
-                                'sleek_can' =>
-                                    'bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary hover:text-white',
-                                'aluminum_can' =>
-                                    'bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary hover:text-white',
-                                'tin_can' =>
-                                    'bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary hover:text-white',
-                                'carnation_can' =>
-                                    'bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary hover:text-white',
-                                'bulk' =>
-                                    'bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary hover:text-white',
-                            ];
+                            
+                            // Removed redundant $packageStyles array
                         @endphp
 
                         @foreach ($packagingData as $index => $item)
@@ -134,16 +112,16 @@
                                                     @if ($item[$pkgKey] != '-')
                                                         <!-- Available packaging option -->
                                                         <div
-                                                            class="relative bg-white hover:bg-gradient-to-br hover:from-white hover:to-primary/5 p-3 rounded-xl border {{ explode(' ', $packageStyles[$pkgKey])[2] }} transition-all duration-300 hover:shadow-md group flex items-center gap-3">
+                                                            class="relative bg-white hover:bg-gradient-to-br hover:from-white hover:to-primary/5 p-3 rounded-xl border border-secondary/20 transition-all duration-300 hover:shadow-md group flex items-center gap-3">
                                                             <!-- Icon container with enhanced styling -->
                                                             <div
-                                                                class="flex-shrink-0 {{ explode(' ', $packageStyles[$pkgKey])[0] }} {{ explode(' ', $packageStyles[$pkgKey])[1] }} rounded-full p-2.5 border {{ explode(' ', $packageStyles[$pkgKey])[2] }} transition-all duration-300 {{ explode(' ', $packageStyles[$pkgKey])[3] }} {{ explode(' ', $packageStyles[$pkgKey])[4] }}">
+                                                                class="flex-shrink-0 bg-secondary/10 text-secondary rounded-full p-2.5 border border-secondary/20 transition-all duration-300 hover:bg-secondary hover:text-white">
                                                                 {!! $packageIcons[$pkgKey] !!}
                                                             </div>
 
                                                             <div class="flex-grow">
                                                                 <div
-                                                                    class="text-xs font-semibold uppercase tracking-wider {{ explode(' ', $packageStyles[$pkgKey])[1] }}/70">
+                                                                    class="text-xs font-semibold uppercase tracking-wider text-secondary/70">
                                                                     {{ str_replace('_', ' ', $pkgKey) }}</div>
                                                                 <div
                                                                     class="font-medium text-dark/90 group-hover:text-dark/100">
@@ -152,7 +130,7 @@
 
                                                             <!-- Visual indicator for package type -->
                                                             <div
-                                                                class="absolute -bottom-0.5 right-4 h-1 w-8 rounded-t-lg {{ explode(' ', $packageStyles[$pkgKey])[0] }}/50 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                                class="absolute -bottom-0.5 right-4 h-1 w-8 rounded-t-lg bg-secondary/10/50 opacity-0 group-hover:opacity-100 transition-opacity">
                                                             </div>
                                                         </div>
                                                     @else

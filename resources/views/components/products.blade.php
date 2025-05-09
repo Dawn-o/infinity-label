@@ -1,6 +1,35 @@
+@php
+// Define product data in the backend
+$products = [
+    'coconut' => [
+        ['title' => 'Coconut Water', 'image' => 'assets/images/products/coconut/Coconut Water.png'],
+        ['title' => 'Coconut Milk for Beverage', 'image' => 'assets/images/products/coconut/Coconut Milk for Beverage.png'],
+        ['title' => 'Coconut Milk for Cooking', 'image' => 'assets/images/products/coconut/Coconut Milk for Cooking.png'],
+        ['title' => 'Coconut Flour', 'image' => 'assets/images/products/coconut/Coconut Flour.png'],
+        ['title' => 'Coconut Desiccated', 'image' => 'assets/images/products/coconut/Coconut Desiccated.png'],
+        ['title' => 'Coconut Chips', 'image' => 'assets/images/products/coconut/Coconut Chips.png'],
+    ],
+    'charcoal' => [
+        ['title' => 'Tamarind Charcoal', 'image' => 'assets/images/products/charcoal/Tamarind Charcoal.jpg'],
+        ['title' => 'Halaban Charcoal', 'image' => 'assets/images/products/charcoal/Halaban Charcoal.jpg'],
+        ['title' => 'Hardwood Charcoal', 'image' => 'assets/images/products/charcoal/Hardwood Charcoal.png'],
+        ['title' => 'Binchotan Charcoal', 'image' => 'assets/images/products/charcoal/Binchotan Charcoal.jpg'],
+        ['title' => 'Mix Hardwood Charcoal', 'image' => 'assets/images/products/charcoal/Mix Hardwood Charcoal.png'],
+        ['title' => 'BBQ Charcoal Briquettes', 'image' => 'assets/images/products/charcoal/BBQ Charcoal Briquettes.jpg'],
+        ['title' => 'Sawdust Charcoal Briquettes', 'image' => 'assets/images/products/charcoal/Sawdust Charcoal Briquettes.jpg'],
+    ]
+];
+
+// Pass product counts to Alpine
+$productCounts = [
+    'coconut' => count($products['coconut']),
+    'charcoal' => count($products['charcoal'])
+];
+@endphp
+
 <section id="products"
     class="py-20 sm:py-24 lg:py-32 bg-gradient-to-b from-accent/10 to-accent/5 relative overflow-hidden"
-    x-data="productSlider">
+    x-data="productSlider(@js($productCounts))">
     <!-- Enhanced top diagonal divider -->
     <div class="absolute top-0 left-0 w-full h-24 bg-white" style="clip-path: polygon(0 0, 100% 0, 100% 100%, 0 30%);">
     </div>
@@ -113,50 +142,31 @@
                     @touchstart="handleTouchStart"
                     @touchend="handleTouchEnd">
                     
-                    <!-- Coconut Products -->
-                    <div class="flex-shrink-0 md:space-x-6 w-full md:w-96 transform transition-all duration-500 product-item"
-                        x-show="activeFilter === 'coconut'" data-category="coconut">
-                        <x-product-card title="Coconut Water"
-                            image="{{ asset('assets/images/products/Coconut Water.png') }}" class="h-full mobile-card" />
-                    </div>
-
-                    <div class="flex-shrink-0 w-80 md:w-96 product-item" x-show="activeFilter === 'coconut'" data-category="coconut">
-                        <x-product-card title="Coconut Milk for Beverage"
-                            image="{{ asset('assets/images/products/Coconut Milk for Beverage.png') }}"
-                            class="h-full" />
-                    </div>
-
-                    <div class="flex-shrink-0 w-80 md:w-96 product-item" x-show="activeFilter === 'coconut'" data-category="coconut">
-                        <x-product-card title="Coconut Milk for Cooking"
-                            image="{{ asset('assets/images/products/Coconut Milk for Cooking.png') }}" class="h-full" />
-                    </div>
-
-                    <div class="flex-shrink-0 w-80 md:w-96 product-item" x-show="activeFilter === 'coconut'" data-category="coconut">
-                        <x-product-card title="Coconut Flour"
-                            image="{{ asset('assets/images/products/Coconut Flour.png') }}" class="h-full" />
-                    </div>
-
-                    <div class="flex-shrink-0 w-80 md:w-96 product-item" x-show="activeFilter === 'coconut'" data-category="coconut">
-                        <x-product-card title="Coconut Desiccated"
-                            image="{{ asset('assets/images/products/Coconut Desiccated.png') }}" class="h-full" />
-                    </div>
-
-                    <div class="flex-shrink-0 w-80 md:w-96 product-item" x-show="activeFilter === 'coconut'" data-category="coconut">
-                        <x-product-card title="Coconut Chips"
-                            image="{{ asset('assets/images/products/Coconut Chips.png') }}" class="h-full" />
-                    </div>
-
-                    <!-- Charcoal Products -->
-                    <div class="flex-shrink-0 w-80 md:w-96 product-item" x-show="activeFilter === 'charcoal'" data-category="charcoal">
-                        <x-product-card title="BBQ Charcoal"
-                            image="{{ asset('assets/images/products/Coconut Water.png') }}" class="h-full" />
-                    </div>
-
-                    <div class="flex-shrink-0 w-80 md:w-96 product-item" x-show="activeFilter === 'charcoal'" data-category="charcoal">
-                        <x-product-card title="Charcoal Briquettes"
-                            image="{{ asset('assets/images/products/Coconut Milk for Beverage.png') }}"
-                            class="h-full" />
-                    </div>
+                    <!-- Coconut Products using Laravel foreach -->
+                    @foreach($products['coconut'] as $index => $product)
+                        <div class="flex-shrink-0 w-80 md:w-96 product-item transform transition-all duration-500 
+                            {{ $index === 0 ? 'md:space-x-6 w-full' : '' }}"
+                            x-show="activeFilter === 'coconut'" 
+                            data-category="coconut">
+                            <x-product-card 
+                                title="{{ $product['title'] }}"
+                                image="{{ asset($product['image']) }}" 
+                                class="h-full {{ $index === 0 ? 'mobile-card' : '' }}" />
+                        </div>
+                    @endforeach
+                    
+                    <!-- Charcoal Products using Laravel foreach -->
+                    @foreach($products['charcoal'] as $index => $product)
+                        <div class="flex-shrink-0 w-80 md:w-96 product-item transform transition-all duration-500
+                            {{ $index === 0 ? 'md:space-x-6 w-full' : '' }}"
+                            x-show="activeFilter === 'charcoal'" 
+                            data-category="charcoal">
+                            <x-product-card 
+                                title="{{ $product['title'] }}"
+                                image="{{ asset($product['image']) }}" 
+                                class="h-full {{ $index === 0 ? 'mobile-card' : '' }}" />
+                        </div>
+                    @endforeach
                 </div>
             </div>
 
@@ -191,7 +201,7 @@
 
         <script>
             document.addEventListener('alpine:init', () => {
-                Alpine.data('productSlider', () => ({
+                Alpine.data('productSlider', (productCounts) => ({
                     // State variables
                     activeFilter: 'coconut',
                     currentPage: 0,
@@ -199,26 +209,11 @@
                     touchStartX: 0,
                     touchEndX: 0,
                     productsPerPage: 2,
-                    
-                    // Product data - you would typically fetch this from your backend
-                    products: [
-                        { title: 'Coconut Water', image: '{{ asset('assets/images/products/Coconut Water.png') }}', category: 'coconut' },
-                        { title: 'Coconut Milk for Beverage', image: '{{ asset('assets/images/products/Coconut Milk for Beverage.png') }}', category: 'coconut' },
-                        { title: 'Coconut Milk for Cooking', image: '{{ asset('assets/images/products/Coconut Milk for Cooking.png') }}', category: 'coconut' },
-                        { title: 'Coconut Flour', image: '{{ asset('assets/images/products/Coconut Flour.png') }}', category: 'coconut' },
-                        { title: 'Coconut Desiccated', image: '{{ asset('assets/images/products/Coconut Desiccated.png') }}', category: 'coconut' },
-                        { title: 'Coconut Chips', image: '{{ asset('assets/images/products/Coconut Chips.png') }}', category: 'coconut' },
-                        { title: 'BBQ Charcoal', image: '{{ asset('assets/images/products/Coconut Water.png') }}', category: 'charcoal' },
-                        { title: 'Charcoal Briquettes', image: '{{ asset('assets/images/products/Coconut Milk for Beverage.png') }}', category: 'charcoal' },
-                    ],
+                    productCounts: productCounts,
                     
                     // Computed properties
-                    get visibleProducts() {
-                        return this.products.filter(product => product.category === this.activeFilter);
-                    },
-                    
                     get totalPages() {
-                        return Math.ceil(this.visibleProducts.length / this.productsPerPage);
+                        return Math.ceil(this.productCounts[this.activeFilter] / this.productsPerPage);
                     },
                     
                     // Initialization

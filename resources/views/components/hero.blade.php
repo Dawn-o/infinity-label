@@ -1,4 +1,6 @@
-<section id="home" class="relative overflow-hidden min-h-screen flex items-center py-24 md:py-24 lg:py-0 lg:pt-36">
+<section id="home" 
+    class="relative overflow-hidden min-h-screen flex items-center py-28 md:py-24 lg:py-0 lg:pt-36"
+    x-data="heroComponent()">
     <!-- Dynamic background with animated elements -->
     <div class="absolute inset-0 -z-10">
         <!-- Custom animated background -->
@@ -34,7 +36,7 @@
         </svg>
 
         <!-- Animated particles -->
-        <div id="particles-js" class="absolute inset-0"></div>
+        <div id="particles-js" class="absolute inset-0" x-ref="particles"></div>
     </div>
 
     <!-- Asymmetric content layout - responsive container -->
@@ -62,14 +64,14 @@
                     </div>
                 </div>
 
-                <!-- Responsive heading with better scale -->
+                <!-- Responsive heading with better scale and text-wrapping fix -->
                 <div class="overflow-hidden mb-3 sm:mb-4">
                     <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight sm:leading-none animate-slideUp"
                         style="animation-delay:0.15s">
                         <span class="block pb-1">Redefining</span>
-                        <div class="relative inline-block">
+                        <div class="relative inline-block w-full">
                             <span
-                                class="relative z-10 bg-clip-text text-transparent bg-gradient-to-br from-primary via-secondary to-accent">Manufacturing</span>
+                                class="relative z-10 bg-clip-text text-transparent bg-gradient-to-br from-primary via-secondary to-accent whitespace-normal tracking-tight sm:tracking-normal word-spacing-tight">Manufacturing</span>
                             <span class="absolute -inset-1 bg-dark/5 -z-10 transform -skew-y-3 rounded-md"></span>
                         </div>
                         <span class="block pt-1">Excellence</span>
@@ -197,7 +199,7 @@
 
                                 <!-- Customer Focused - mobile friendly -->
                                 <div
-                                    class="feature-item col-span-2 bg-white/50 backdrop-filter backdrop-blur-sm rounded-lg p-2.5 sm:p-3 transition-all duration-300 hover:shadow-md hover:bg-white/80 hover:scale-[1.02] sm:hover:scale-105 hover:-translate-y-1 touch-action-manipulation">
+                                    class="feature-item col-span-1 sm:col-span-2 bg-white/50 backdrop-filter backdrop-blur-sm rounded-lg p-2.5 sm:p-3 transition-all duration-300 hover:shadow-md hover:bg-white/80 hover:scale-[1.02] sm:hover:scale-105 hover:-translate-y-1 touch-action-manipulation">
                                     <div class="flex items-center">
                                         <div
                                             class="mr-2.5 sm:mr-3 flex-shrink-0 w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-accent/10 flex items-center justify-center">
@@ -305,89 +307,104 @@
 </section>
 
 <script>
-    // Optimized mobile functionality
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize particles background with responsive configuration
-        if (typeof particlesJS !== 'undefined') {
-            // Detect mobile for performance optimization
-            const isMobile = window.innerWidth < 768;
-
-            particlesJS("particles-js", {
-                particles: {
-                    number: {
-                        value: isMobile ? 8 : 15, // Fewer particles on mobile for better performance
-                        density: {
-                            enable: true,
-                            value_area: isMobile ? 600 : 800
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('heroComponent', () => ({
+            isMobile: window.innerWidth < 768,
+            counters: [],
+            
+            init() {
+                // Initialize particles when component loads
+                this.initParticles();
+                
+                // Set up counters
+                this.$nextTick(() => {
+                    this.counters = document.querySelectorAll('.counter-value');
+                    this.setupCounters();
+                });
+                
+                // Handle resize events
+                this.$watch('isMobile', () => this.initParticles());
+                window.addEventListener('resize', () => {
+                    this.isMobile = window.innerWidth < 768;
+                });
+            },
+            
+            initParticles() {
+                if (typeof particlesJS !== 'undefined' && this.$refs.particles) {
+                    particlesJS("particles-js", {
+                        particles: {
+                            number: {
+                                value: this.isMobile ? 8 : 15, // Fewer particles on mobile
+                                density: {
+                                    enable: true,
+                                    value_area: this.isMobile ? 600 : 800
+                                }
+                            },
+                            color: {
+                                value: "#cccccc"
+                            },
+                            shape: {
+                                type: "circle"
+                            },
+                            opacity: {
+                                value: 0.2,
+                                random: true
+                            },
+                            size: {
+                                value: this.isMobile ? 2 : 3, // Smaller particles on mobile
+                                random: true
+                            },
+                            line_linked: {
+                                enable: false
+                            },
+                            move: {
+                                enable: true,
+                                speed: this.isMobile ? 0.8 : 1, // Slower on mobile
+                                direction: "none",
+                                random: true,
+                                out_mode: "out"
+                            }
                         }
-                    },
-                    color: {
-                        value: "#cccccc"
-                    },
-                    shape: {
-                        type: "circle"
-                    },
-                    opacity: {
-                        value: 0.2,
-                        random: true
-                    },
-                    size: {
-                        value: isMobile ? 2 : 3, // Smaller particles on mobile
-                        random: true
-                    },
-                    line_linked: {
-                        enable: false
-                    },
-                    move: {
-                        enable: true,
-                        speed: isMobile ? 0.8 : 1, // Slower on mobile for better performance
-                        direction: "none",
-                        random: true,
-                        out_mode: "out"
+                    });
+                }
+            },
+            
+            setupCounters() {
+                if ('IntersectionObserver' in window) {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                this.animateCounter(entry.target);
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, { threshold: 0.5 });
+                    
+                    this.counters.forEach(counter => observer.observe(counter));
+                } else {
+                    // Fallback for browsers without IntersectionObserver
+                    this.counters.forEach(counter => this.animateCounter(counter));
+                }
+            },
+            
+            animateCounter(element) {
+                const target = parseInt(element.getAttribute('data-count'));
+                let count = 0;
+                const increment = target / 40;
+                
+                const updateCount = () => {
+                    if (count < target) {
+                        count += increment;
+                        element.textContent = Math.ceil(count);
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        element.textContent = target;
                     }
-                }
-            });
-        }
-
-        // Number counter animation
-        const counters = document.querySelectorAll('.counter-value');
-
-        const startCounting = (entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const element = entry.target;
-                    const target = parseInt(element.getAttribute('data-count'));
-                    let count = 0;
-                    const increment = target / 40;
-
-                    const updateCount = () => {
-                        if (count < target) {
-                            count += increment;
-                            element.textContent = Math.ceil(count);
-                            requestAnimationFrame(updateCount);
-                        } else {
-                            element.textContent = target;
-                        }
-                    };
-
-                    requestAnimationFrame(updateCount);
-                    observer.unobserve(element);
-                }
-            });
-        };
-
-        const observer = new IntersectionObserver(startCounting, {
-            threshold: 0.5
-        });
-        counters.forEach(counter => observer.observe(counter));
-
-        // Add resize handler for responsive adjustments
-        function handleResize() {
-            // Can add any specific resize adjustments here if needed
-        }
-
-        window.addEventListener('resize', handleResize);
-        handleResize(); // Initial call
+                };
+                
+                requestAnimationFrame(updateCount);
+            }
+        }));
     });
 </script>
 

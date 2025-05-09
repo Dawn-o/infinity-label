@@ -18,7 +18,7 @@
             </div>
             <h2
                 class="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-secondary mt-3 mb-4">
-                The Yown Brand Story</h2>
+                The Infinity Label Story</h2>
             <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto mb-5"></div>
             <p class="mt-4 max-w-3xl mx-auto text-dark/80 text-lg">Your reliable OEM manufacturing partner, committed to
                 delivering exceptional quality products that help your brand stand out in the global marketplace.</p>
@@ -103,7 +103,7 @@
                     <div class="space-y-6 text-dark/80 leading-relaxed text-base sm:text-lg">
                         <p
                             class="relative pl-5 border-l-3 border-primary text-lg sm:text-xl font-medium text-dark leading-snug">
-                            Yown Brand is a trusted OEM company from Indonesia specializing in the production and
+                            Infinity Label is a trusted OEM company from Indonesia specializing in the production and
                             export of
                             premium coconut and charcoal-based products.
                         </p>

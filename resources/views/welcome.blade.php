@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Yown Brand - Trusted OEM Partner for International Retail & Supermarket Brands">
-    <title>Yown Brand - Your OEM Manufacturing Partner</title>
+    <meta name="description" content="Infinity Label - Trusted OEM Partner for International Retail & Supermarket Brands">
+    <title>Infinity Label - Your OEM Manufacturing Partner</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -128,11 +128,16 @@
     </style>
 </head>
 
-<body class="bg-light text-dark font-sans antialiased">
-    <div class="loader" id="loader">
+<body class="bg-light text-dark font-sans antialiased" x-data="mainApp">
+    <div class="loader" id="loader" :class="{ 'loader-hidden': !isLoading }">
         <div class="loader-logo">
             <div class="blob w-24 h-24 bg-gradient-to-br from-secondary to-primary flex items-center justify-center">
-                <span class="text-white text-2xl font-bold">Y</span>
+                <span class="text-white text-2xl font-bold">
+                    <svg class="w-14 h-14 text-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="currentColor"
+                            d="M20.288 9.463a4.856 4.856 0 0 0-4.336-2.3 4.586 4.586 0 0 0-3.343 1.767c.071.116.148.226.212.347l.879 1.652.134-.254a2.71 2.71 0 0 1 2.206-1.519 2.845 2.845 0 1 1 0 5.686 2.708 2.708 0 0 1-2.205-1.518L13.131 12l-1.193-2.26a4.709 4.709 0 0 0-3.89-2.581 4.845 4.845 0 1 0 0 9.682 4.586 4.586 0 0 0 3.343-1.767c-.071-.116-.148-.226-.212-.347l-.879-1.656-.134.254a2.71 2.71 0 0 1-2.206 1.519 2.855 2.855 0 0 1-2.559-1.369 2.825 2.825 0 0 1 0-2.946 2.862 2.862 0 0 1 2.442-1.374h.121a2.708 2.708 0 0 1 2.205 1.518l.7 1.327 1.193 2.26a4.709 4.709 0 0 0 3.89 2.581h.209a4.846 4.846 0 0 0 4.127-7.378z" />
+                    </svg>
+                </span>
             </div>
         </div>
     </div>
@@ -153,42 +158,53 @@
     <!-- Initialize AOS animations -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // Loading screen
-        window.addEventListener('load', function() {
-            const loader = document.getElementById('loader');
-            loader.classList.add('loader-hidden');
-        });
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('mainApp', () => ({
+                isLoading: true,
+                currentSection: '',
 
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            easing: 'ease-out-cubic',
-            once: true,
-            offset: 100
-        });
+                init() {
+                    // Handle loader
+                    window.addEventListener('load', () => {
+                        this.isLoading = false;
+                    });
 
-        // Active navigation highlighting
-        document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('nav a:not(:last-child)'); // Exclude Contact button
-
-            window.addEventListener('scroll', function() {
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    if (scrollY >= (sectionTop - 100)) {
-                        current = section.getAttribute('id');
+                    // Initialize AOS
+                    if (typeof AOS !== 'undefined') {
+                        AOS.init({
+                            duration: 800,
+                            easing: 'ease-out-cubic',
+                            once: true,
+                            offset: 100
+                        });
                     }
-                });
 
-                navLinks.forEach(link => {
-                    link.classList.remove('active-nav-link');
-                    if (link.getAttribute('href').substring(1) === current) {
-                        link.classList.add('active-nav-link');
-                    }
-                });
-            });
+                    // Handle scroll for navigation highlighting
+                    this.handleScroll();
+                    window.addEventListener('scroll', () => this.handleScroll());
+                },
+
+                handleScroll() {
+                    const sections = document.querySelectorAll('section');
+                    const navLinks = document.querySelectorAll('nav a:not(:last-child)');
+
+                    // Find current section
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop;
+                        if (window.scrollY >= (sectionTop - 100)) {
+                            this.currentSection = section.getAttribute('id');
+                        }
+                    });
+
+                    // Update active navigation link
+                    navLinks.forEach(link => {
+                        link.classList.remove('active-nav-link');
+                        if (link.getAttribute('href')?.substring(1) === this.currentSection) {
+                            link.classList.add('active-nav-link');
+                        }
+                    });
+                }
+            }));
         });
     </script>
 </body>
